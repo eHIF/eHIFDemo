@@ -1,0 +1,32 @@
+{
+    "name": "bootstrap-jstree-theme",
+    "version": "0.2.1",
+    "homepage": "https://bitbucket.org/aupshaw/bootstrap-jstree-theme/overview",
+    "authors": [
+        "Aaron Upshaw"
+    ],
+    "description": "Bootstrap 3.x jsTree Theme",
+    "keywords": [
+        "ui",
+        "tree",
+        "jstree",
+        "themes"
+    ],
+    "main": "dist/themes/bootstrap/style.css",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "src",
+        "*.sublime-project",
+        "Gruntfile.coffee",
+        "bower.json",
+        "package.json"
+    ],
+    "dependencies": {
+        "jstree": "~3.0.0-beta9"
+    }
+}

@@ -21,7 +21,6 @@ class HomeController extends BaseController {
         $activiti = new Activiti("http://ws307.math.auth.gr:8080/activiti-rest/service/", "kermit", "kermit");
         $processes = $activiti->processes->get();
 
-
         var_dump($processes[0]->processinstances[0]->startUserId);
 
 

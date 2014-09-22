@@ -26,12 +26,12 @@ class CreatePatientsTable extends Migration {
 			$table->string("area");
 			$table->string("nationality");
 			$table->date("birthday");
-            $table->foreign('gender_id')
+      /*      $table->foreign('gender_id')
                 ->references('id')->on('genders');
             $table->foreign('socialsecurity_id')
                 ->references('id')->on('socialsecurities');
 
-			$table->timestamps();
+			$table->timestamps();*/
 		});
 	}
 

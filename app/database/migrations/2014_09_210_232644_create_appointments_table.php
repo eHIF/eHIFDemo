@@ -17,8 +17,9 @@ class CreateAppointmentsTable extends Migration {
 			$table->string("comments");
             $table->dateTime("start");
             $table->dateTime("end");
-            $table->foreign("reccurent_id")
-                ->references("id")->on("reccurents");
+            $table->integer("patient_id");
+        //    $table->foreign("reccurent_id")
+           //     ->references("id")->on("reccurents");
             $table->foreign("patient_id")
                 ->references("id")->on("patients");
 

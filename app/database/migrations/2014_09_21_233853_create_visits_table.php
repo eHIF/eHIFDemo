@@ -20,6 +20,9 @@ class CreateVisitsTable extends Migration {
             $table->dateTime("when");
             $table->text("symptoms");
             $table->text("diagnosis");
+            $table->integer("doctoruser_id");
+            $table->integer("receptionuser_id");
+            $table->integer("patient_id");
             $table->foreign("receptionuser_id")->
                 references("id")->on("users");
             $table->foreign("doctoruser_id")

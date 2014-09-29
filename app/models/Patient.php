@@ -3,6 +3,8 @@
 class Patient extends Eloquent {
 	protected $guarded = array();
 
+    public $fillable = array("name", "surname", "AMKA");
+
 	public static $rules = array();
 
     public function scopeLike($query, $what){

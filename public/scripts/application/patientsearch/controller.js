@@ -1,4 +1,4 @@
-app.controller('PatientsSearchController', function($scope,PatientsSearch,DTOptionsBuilder, DTColumnBuilder) {
+app.controller('PatientsSearchController', function($scope,PatientsSearch,PatientsService,DTOptionsBuilder, DTColumnBuilder) {
 
 
     $scope.reloadData = function() {
@@ -39,6 +39,32 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,DTOpti
     $scope.newvisitor = {};
     $scope.searchTerm = "";
 
+    $scope.isSearching = false;
+
+    $scope.error = "";
+
+    $scope.saveAndContinue = function(){
+        PatientsService.update($scope.selection).$promise.then(
+            //success
+            function( value ){ window.location.href = baseURL + "/visits/create/" + $scope.selection.id},
+            //error
+            function( error ){$scope.error = "Δεν ήταν δυνατή η αποθήκευση";}
+        );
+
+    };
+
+    $scope.newAndContinue = function(){
+        PatientsService.create($scope.newvisitor).$promise.then(
+            //success
+            function( value ){
+                window.location.href = baseURL + "/visits/create/" + value.id},
+            //error
+            function( error ){$scope.error = "Δεν ήταν δυνατή η αποθήκευση";}
+        );
+
+
+    };
+
    /* var updateClock = function() {
         $scope.clock = new Date();
     };
@@ -47,7 +73,14 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,DTOpti
     }, 1000);
     updateClock();*/
     $scope.search = function () {
+        $scope.isSearching = true;
         $scope.results = PatientsSearch.search({ term: $scope.searchTerm});
+        $scope.results.$promise.then(
+            //success
+            function( value ){$scope.isSearching = false;},
+            //error
+            function( error ){$scope.isSearching = false;}
+        );
         $scope.dtOptions.reloadData();
         if(!isNaN($scope.searchTerm)){
             $scope.newvisitor.amka = $scope.searchTerm;

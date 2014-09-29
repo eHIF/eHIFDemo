@@ -29,7 +29,7 @@
       <tbody></tbody>
   </table>
 </span>
-    <span ng-if="results.length<1" >
+    <span ng-if="results.length<1 && !isSearching" >
   Δεν υπάρχει καταχωρημένος επισκέπτης ασθενής με αυτά τα στοιχεία
 </span>
 
@@ -54,13 +54,19 @@
                     <input ng-model="selection.surname" type="text" id="surname" name="surname"/>
                 </div>
             </div>
-            <button ng-if="selection.amka" class="btn btn-lg btn-default" type="reset">Συνέχεια</button>
+            <div class="form-group">
+                <label for="amka" class="col-md-3  control-label">ΑΜΚΑ</label>
+                <div class="col-sm-9">
+                    <input ng-model="selection.amka" type="text" id="amka" name="amka"/>
+                </div>
+            </div>
+            <button ng-if="selection.amka"  ng-click="saveAndContinue()" class="btn btn-lg btn-default" >Συνέχεια</button>
 
 
         </div>
 
 
-    <div ng-if="results.length<1" >
+    <div ng-if="results.length<1  && !isSearching" >
         <div class="form-group">
             <label for="name" class="col-md-3  control-label">Όνομα</label>
             <div class="col-sm-9">
@@ -83,7 +89,7 @@
             </div>
         </div>
 
-     <button class="btn btn-lg btn-default" type="reset">Πρώτη Επίσκεψη</button>
+     <button class="btn btn-lg btn-default" ng-click="newAndContinue()" >Πρώτη Επίσκεψη</button>
     </div>
 
     </form>

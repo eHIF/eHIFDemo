@@ -14,4 +14,17 @@ class PatientsController extends Controller {
 
         return $patients;
     }
+
+    public function update(){
+        $patient = Patient::find(Input::get("id"));
+        $patient->update(Input::except("id"));
+    }
+
+    public function create(){
+        $patient = Patient::create(Input::all());
+
+        return array("id"=>$patient->id);
+
+
+    }
 } 

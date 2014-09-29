@@ -11,3 +11,10 @@ app.service('PatientsSearch', function($resource) {
 
     });
 });
+app.service('PatientsService', function($resource) {
+    return $resource(baseURL + "/api/patients/:verb", {}, {
+        update: {method: 'POST', params: {verb:"update"}},
+        create: {method: 'POST', params: {verb:"create"}}
+
+    });
+});

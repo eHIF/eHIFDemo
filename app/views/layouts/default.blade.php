@@ -22,17 +22,19 @@
 
     <!-- Custom Fonts -->
     <link href="{{ URL::asset('bower_resources/sb-admin-2/font-awesome-4.1.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('bower_resources/datatables/media/css/jquery.dataTables.css')}}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 
 </head>
 
-<body>
+<body ng-app="eHIFDemo">
 
     <div id="wrapper">
 
@@ -377,7 +379,9 @@
 
     </div>
     <!-- /#wrapper -->
-
+<script>
+    baseURL = "{{URL::to('/')}}";
+</script>
     <!-- jQuery Version 1.11.0 -->
     <script src="{{ URL::asset('bower_resources/jquery/dist/jquery.js')}}"></script>
 
@@ -389,6 +393,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ URL::asset('bower_resources/sb-admin-2/js/sb-admin-2.js')}}"></script>
+    <script src="{{ URL::asset('bower_resources/datatables/media/js/jquery.dataTables.js')}}"></script>
+
+    <script src="{{ URL::asset('bower_resources/angular/angular.js')}}"></script>
+    <script src="{{ URL::asset('bower_resources/angular-resource/angular-resource.js')}}"></script>
+    <script src="{{ URL::asset('bower_resources/angular-route/angular-route.js')}}"></script>
+    <script src="{{ URL::asset('bower_resources/angular-datatables/dist/angular-datatables.js')}}"></script>
+    <script src="{{ URL::asset('scripts/application/app.js')}}"></script>
+
+@yield("scripts")
 
 </body>
 

@@ -37,4 +37,5 @@ Route::post("api/patients/update", "PatientsController@update");
 Route::post("api/patients/create", "PatientsController@create");
 
 Route::get("visits/create/{patient_id?}", "VisitsController@create");
+Route::get("visits", "VisitsController@index");
 Route::post("visits/store/{patient_id?}", array("as"=>"visits.store", "uses"=>"VisitsController@store"));

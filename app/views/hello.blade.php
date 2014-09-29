@@ -5,7 +5,7 @@
 @section('content')
 <div class="col-lg-12">
 <div>
-    <a href="">Υποδοχή Ασθενούς</a>
+    <a href="{{URL::to('patients/reception')}}">Υποδοχή Ασθενούς</a>
 </div>
 
 

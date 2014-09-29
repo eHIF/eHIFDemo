@@ -14,8 +14,10 @@ class VisitsController extends Controller{
 
         $patient = Patient::find(Input::get("patient_id"));
         $visit->patient()->associate($patient);
-        $user = User::find(1);// Auth::user();
+        $user =  Auth::user();
         $visit->receptionUser()->associate($user);
+
+        $visit->save();
 
         Redirect::to(action("visit.classify"));
     }
@@ -26,8 +28,10 @@ class VisitsController extends Controller{
         return View::make('visits.create')->with("patient", $patient);
     }
 
-    public function classify(){
+    public function index(){
+        $visits = Visit::with("patient")->get();
 
+        return View::make("visits.index")->with("visits", $visits);
     }
 
 } 

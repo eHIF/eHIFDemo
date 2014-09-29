@@ -13,4 +13,8 @@ class Patient extends Eloquent {
             ->orwhere('AMKA', 'LIKE', "%$what%")
             ;
     }
+
+    public function visits(){
+        return $this->hasMany("Visit");
+    }
 }

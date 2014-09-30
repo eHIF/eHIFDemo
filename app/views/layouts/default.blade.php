@@ -22,7 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="{{ URL::asset('bower_resources/sb-admin-2/font-awesome-4.1.0/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ URL::asset('bower_resources/datatables/media/css/jquery.dataTables.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('bower_resources/DataTables/media/css/jquery.dataTables.css')}}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -393,7 +393,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ URL::asset('bower_resources/sb-admin-2/js/sb-admin-2.js')}}"></script>
-    <script src="{{ URL::asset('bower_resources/datatables/media/js/jquery.dataTables.js')}}"></script>
+    <script src="{{ URL::asset('bower_resources/DataTables/media/js/jquery.dataTables.js')}}"></script>
 
     <script src="{{ URL::asset('bower_resources/angular/angular.js')}}"></script>
     <script src="{{ URL::asset('bower_resources/angular-resource/angular-resource.js')}}"></script>

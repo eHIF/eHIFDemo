@@ -23,6 +23,9 @@ class HomeController extends BaseController {
 
       //  var_dump($processes[0]->processinstances[0]->startUserId);
 
+        if(Auth::user()==null){
+            return Redirect::to(URL::to('users/login'));
+        }
 
 		return View::make('hello');
 	}

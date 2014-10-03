@@ -25,5 +25,9 @@ class Visit extends Eloquent{
     }
 
 
+    public function visit_status(){
+        return $this->belongsTo("VisitStatus");
+    }
+
 
 } 

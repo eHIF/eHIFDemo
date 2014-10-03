@@ -1,0 +1,49 @@
+<?php $__env->startSection('pagetitle'); ?>
+Edit Session
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-2">
+
+        <?php if($errors->any()): ?>
+        	<div class="alert alert-danger">
+        	    <ul>
+                    <?php echo implode('', $errors->all('<li class="error">:message</li>')); ?>
+
+                </ul>
+        	</div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php echo Form::model($session, array('class' => 'form-horizontal', 'method' => 'PATCH', 'route' => array('sessions.update', $session->id))); ?>
+
+
+        <div class="form-group">
+            <?php echo Form::label('diagnosis', 'Diagnosis:', array('class'=>'col-md-2 control-label')); ?>
+
+            <div class="col-sm-10">
+              <?php echo Form::textarea('diagnosis', '', Input::old('id'), array('class'=>'form-control')); ?>
+
+            </div>
+        </div>
+
+<a>Παραπομπή για εξετάσεις</a>
+<a>Φαρμακευτική Αγωγή</a>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">&nbsp;</label>
+    <div class="col-sm-10">
+      <?php echo Form::submit('Update', array('class' => 'btn btn-lg btn-primary')); ?>
+
+      <?php echo link_to_route('sessions.show', 'Cancel', $session->id, array('class' => 'btn btn-lg btn-default')); ?>
+
+    </div>
+</div>
+
+<?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

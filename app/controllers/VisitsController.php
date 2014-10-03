@@ -16,10 +16,10 @@ class VisitsController extends Controller{
         $visit->patient()->associate($patient);
         $user =  Auth::user();
         $visit->receptionUser()->associate($user);
-
+        $visit->visit_status = VisitStatus::status("pending");
         $visit->save();
 
-        Redirect::to(action("visit.classify"));
+        return Redirect::to(URL::to("visits"));
     }
 
 

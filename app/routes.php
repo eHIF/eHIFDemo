@@ -41,3 +41,9 @@ Route::get("visits", "VisitsController@index");
 Route::post("visits/store/{patient_id?}", array("as"=>"visits.store", "uses"=>"VisitsController@store"));
 
 Route::resource('sessions', 'SessionsController');
+
+
+Route::get('api/sessions/referrals', 'ReferralsController@api_index');
+Route::post('api/sessions/referrals', 'ReferralsController@api_store');
+Route::delete('api/sessions/referrals', 'ReferralsController@api_delete');
+Route::get('api/sessions/referrals/types', 'ReferralTypesController@api_index');

@@ -99,7 +99,7 @@ class SessionsController extends BaseController {
 			return Redirect::route('sessions.index');
 		}
 
-		return View::make('sessions.edit', compact('session'));
+		return View::make('sessions.edit', compact('session'))->with("patient",$session->patient);
 	}
 
 	/**

@@ -16,7 +16,7 @@ class VisitsController extends Controller{
         $visit->patient()->associate($patient);
         $user =  Auth::user();
         $visit->receptionUser()->associate($user);
-        $visit->visit_status = VisitStatus::status("pending");
+        $visit->visit_status()->associate(VisitStatus::status("pending"));
         $visit->save();
 
         return Redirect::to(URL::to("visits"));

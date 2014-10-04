@@ -128,7 +128,7 @@ return array(
         'Regulus\ActivityLog\ActivityLogServiceProvider',
         'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider',
         'Dollar\Generators\GeneratorsServiceProvider',
-
+        'eHIF\Events\ApiEventsProvider',
 
 	),
 

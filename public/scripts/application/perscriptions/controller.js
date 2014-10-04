@@ -1,8 +1,11 @@
-app.controller('PatientsSearchController', function($scope,PatientsSearch,PatientsService,DTOptionsBuilder, DTColumnBuilder) {
+app.controller('ReferralsController', function($scope,ReferralsService,DTOptionsBuilder, DTColumnBuilder) {
 
 
     $scope.reloadData = function() {
         $scope.dtOptions.reloadData();
+    };
+    $scope.changeData = function() {
+        $scope.dtOptions.sAjaxSource = 'http://localhost/eHIFDemo/public/api/patients/search/11';
     };
 
     $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -69,7 +72,7 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,Patien
         $scope.$apply(updateClock);
     }, 1000);
     updateClock();*/
-    $scope.search = function () {
+    $scope.index = function () {
         $scope.isSearching = true;
         $scope.results = PatientsSearch.search({ term: $scope.searchTerm});
         $scope.results.$promise.then(

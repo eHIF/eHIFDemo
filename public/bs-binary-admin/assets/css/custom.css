@@ -104,7 +104,7 @@ background-color: #A95DF0;
 color: #fff;
 }
   .bg-color-red {
-background-color: #DB0630;
+background-color:#f15a24;
 color: #fff;
 }
   .bg-color-brown {
@@ -157,7 +157,7 @@ color:#fff;
     border-top: 0px solid #fff;
 }
      .back-footer-red {
-    background-color: #AF0000;
+    background-color: #f15a24;
     border-top: 0px solid #fff;
 }
      .color-bottom-txt {
@@ -207,7 +207,7 @@ max-width:170px;
 
 .navbar-cls-top .navbar-brand {
 	color: #fff;
-background: #C90000;
+background: #f15a24;
 width: 260px;
 text-align: center;
 height: 60px;
@@ -215,7 +215,7 @@ font-size: 30px;
 font-weight: 700;
 }
 .active-menu {
-    background-color:#C90000!important;
+    background-color:#f15a24!important;
 }
 
 .arrow {
@@ -276,7 +276,7 @@ font-weight: 700;
 	left:20px;
 	width:15px;
 	height:1px;
-	background:#ff0000;
+	background:#f15a24;
 	top:20px;
 }
 .nav-second-level > li > a:after,
@@ -287,7 +287,7 @@ font-weight: 700;
 	left:20px;
 	width:1px;
 	height:100%;
-	background:#ff0000;
+	background:#f15a24;
 	top:0px;
 	z-index:10;
 }
@@ -311,7 +311,7 @@ font-weight: 700;
 }
 .navbar-cls-top .navbar-brand:hover {
 
-background: #C90000;
+background: #f15a24;
 color:#fff;
 
 }
@@ -324,7 +324,7 @@ border:0px solid black;
     background: #A70303;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-background-color: #B40101;
+background-color: #f15a24;
 }
 .navbar-default .navbar-toggle {
 border-color: #fff;

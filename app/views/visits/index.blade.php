@@ -16,7 +16,7 @@ Visits
     @if(isset($visit->patient))
     <tr>
         <td> <div>{{$visit->patient->surname}}</div></td>
-        <td> <div><a href="{{URL::to('sessions/create')}}">Έναρξη εξέτασης</a></div></td>
+        <td> <div><a href="{{URL::route('sessions.create',array("visit"=>$visit->id))}}">Έναρξη εξέτασης</a></div></td>
     </tr>
 
     @endif

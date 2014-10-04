@@ -9,4 +9,8 @@ class User extends Eloquent implements ConfideUserInterface
     use ConfideUser;
     use HasRole; // Add this trait to your user model
 
+    public function department(){
+        return $this->belongsTo("Department");
+    }
+
 }

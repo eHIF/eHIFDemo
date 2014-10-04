@@ -5,6 +5,11 @@
 <script src="{{URL::asset('scripts/application/patientsearch/controller.js')}}"></script>
 @endsection
 
+
+@section('pagetitle')
+Αναζήτηση ασθενούς
+@endsection
+
 @section('content')
 
 
@@ -13,12 +18,13 @@
 <div ng-controller="PatientsSearchController">
     <form class="form-horizontal">
         <div class="form-group">
-            <label for="search" class="col-md-3  control-label">Αναζήτηση με Επίθετο ή ΑΜΚΑ</label>
+            <label for="search" class="col-md-3  control-label">Επίθετο ή ΑΜΚΑ:</label>
             <div class="col-sm-9">
                 <input ng-model="searchTerm" type="text" id="search" name="search"/>
             </div>
         </div>
-        <button ng-click="search()" class="btn btn-lg btn-default" type="submit">Αναζήτηση</button>
+        <div class="col-md-9">   <button ng-click="search()" class="btn btn-lg btn-default" type="submit">Αναζήτηση</button>
+        </div>
 
     </form>
 <span ng-if="results.length>0" >

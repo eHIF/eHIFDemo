@@ -18,4 +18,9 @@ class MedicalSession extends Eloquent {
     public function doctor(){
         return $this->belongsTo("User","doctor_id");
     }
+
+    public function close(){
+        $this->closed=true;
+        $this->save();
+    }
 }

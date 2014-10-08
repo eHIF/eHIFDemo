@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title')
+@section('pagetitle')
 Έναρξη
 @endsection
 @section('content')

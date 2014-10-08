@@ -141,4 +141,13 @@ class SessionsController extends BaseController {
 		return Redirect::route('sessions.index');
 	}
 
+    public function close(){
+        $id = Input::get("id");
+
+        $session = MedicalSession::find($id);
+        $session->close();
+        return Redirect::route('sessions.show', $id);
+
+    }
+
 }

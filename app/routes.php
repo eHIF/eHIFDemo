@@ -47,3 +47,6 @@ Route::get('api/sessions/referrals', 'ReferralsController@api_index');
 Route::post('api/sessions/referrals', 'ReferralsController@api_store');
 Route::delete('api/sessions/referrals', 'ReferralsController@api_delete');
 Route::get('api/sessions/referrals/types', 'ReferralTypesController@api_index');
+
+
+Route::post('sessions/close',"SessionsController@close");

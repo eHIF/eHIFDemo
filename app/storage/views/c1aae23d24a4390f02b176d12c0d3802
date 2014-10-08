@@ -54,6 +54,7 @@
 
         <button ng-click="addReferral()" class="btn btn-primary">Προσθήκη</button>
 
+        <div class="row"><a target="_blank" href="http://www.e-syntagografisi.gr/">Ηλεκτρονική Συνταγογράφηση</a></div>
     </div>
 </div>
 

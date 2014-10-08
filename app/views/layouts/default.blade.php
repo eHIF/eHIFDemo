@@ -25,21 +25,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{URL::to('/')}}">Κ.Υ. ΚΙΣΣΑΜΟΥ</a>
+
+            <a class="navbar-brand" href="{{URL::to('/')}}">Κ.Υ. Κισσάμου</a>
         </div>
+        @if(Auth::check())
         <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
 font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Αποσύνδεση</a> </div>
+    @endif
     </nav>
     <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
+                @if(Auth::check())
                 <li class="text-center">
                     <h3 style="color: orange" class="title">{{{Auth::user()->department->name}}}</h3>
                 </li>
-
+                @endif
 
                 <li>
                     <a  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
@@ -101,13 +105,16 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>@yield('pagetitle')</h2>
+                    <div class="page-title">
+                        <h2>@yield('pagetitle')</h2>
+                    </div>
+                    <hr/>
                    @yield('content')
 
                 </div>
             </div>
             <!-- /. ROW  -->
-            <hr />
+
 
         </div>
         <!-- /. PAGE INNER  -->

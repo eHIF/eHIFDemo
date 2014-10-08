@@ -8,7 +8,7 @@
 <?php $__env->appendSection(); ?>
 
 <div ng-controller="ReferralsController">
-
+<h3>Εξετάσεις</h3>
   <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="row-border hover">
       <thead>
       <th>Τύπος Εξέτασης</th>
@@ -27,9 +27,11 @@
       </tr>
       </tbody>
   </table>
-
+<hr/>
     <form class="form form-horizontal">
-
+        <fieldset>
+            <legend>Προσθήκη εξέτασης</legend>
+        </fieldset>
         <div class="form-group">
             <?php echo Form::label('referral_type', 'Τύπος παραπεμπτικού:', array('class'=>'col-md-4 control-label')); ?>
 
@@ -46,9 +48,15 @@
             </div>
         </div>
 
-
+<div class="form-group">
+    <label class="col-sm-4 control-label">&nbsp;</label>
+    <div class="col-sm-8">
 
         <button ng-click="addReferral()" class="btn btn-primary">Προσθήκη</button>
-    </form>
+
+    </div>
+</div>
+
+       </form>
 
 </div>

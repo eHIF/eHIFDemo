@@ -12,7 +12,9 @@ class ReferralsController extends BaseController {
     public function api_index(){
 
         $session_id = Input::get("session_id");
+
         $event = Event::fire('api.test','j');
+        dd($event);
         return Referral::with("referral_type")->where("session_id",$session_id)->get();
     }
 

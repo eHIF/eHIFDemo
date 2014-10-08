@@ -13,7 +13,12 @@ app.controller('ReferralsController', function($scope,ReferralsService,Referrals
                 });
             });
             return nRow;
-        }).withOption("language", {url:"https://cdn.datatables.net/plug-ins/a5734b29083/i18n/Greek.json"});
+        })
+        .withOption("language", {url:"https://cdn.datatables.net/plug-ins/a5734b29083/i18n/Greek.json"})
+        .withOption("searching", false)
+        .withOption("lengthChange", false)
+        .withOption("paginate", false)
+    ;
 
 
     $scope.dtColumnDefs = [

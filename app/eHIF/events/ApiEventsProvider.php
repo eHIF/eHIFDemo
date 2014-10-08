@@ -8,8 +8,11 @@
  */
 
 namespace eHIF\Events;
-use Illuminate\Support\ServiceProvider;
+
+use  Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
+use eHIF\Activiti;
 class ApiEventsProvider extends  ServiceProvider {
 
     /**
@@ -19,6 +22,7 @@ class ApiEventsProvider extends  ServiceProvider {
      */
     public function register()
     {
+
         $this->app->events->subscribe(new ApiEventsHandler);
     }
 

@@ -29,7 +29,6 @@
     </div>
 
 
-
     <div class="form-group">
         <label class="col-sm-2 control-label">&nbsp;</label>
         <div class="col-sm-10">
@@ -42,7 +41,7 @@
 </div>
 <div class="col-sm-6">
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#exams">
@@ -57,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#perscription">
@@ -72,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-warning">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#therapy">
@@ -86,7 +85,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-danger">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#hospitalization">

@@ -60,6 +60,7 @@ class SessionsController extends BaseController {
 
             $session->visit()->associate($visit);
             $session->patient()->associate($patient);
+            $session->doctor()->associate(Auth::user());
             $session->save();
 
 			return Redirect::route('sessions.edit',array("id"=> $session->id));

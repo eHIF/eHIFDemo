@@ -21,13 +21,13 @@
         <div class="form-group">
             {{ Form::label('symptoms', 'Συμπτώματα:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::textarea('symptoms', '', Input::old('symptoms'), array('class'=>'form-control')) }}
+              {{ Form::textarea('symptoms', $visit->symptoms, Input::old('symptoms'), array('class'=>'form-control')) }}
             </div>
             <div class="col-sm-10">
-              {{ Form::hidden('patient_id', $patient->id, Input::old('symptoms'), array('class'=>'form-control')) }}
+              {{ Form::hidden('patient_id', $patient->id, Input::old('patient_id'), array('class'=>'form-control')) }}
             </div>
             <div class="col-sm-10">
-              {{ Form::hidden('visit_id', $visit->id, Input::old('symptoms'), array('class'=>'form-control')) }}
+              {{ Form::hidden('visit_id', $visit->id, Input::old('visit_id'), array('class'=>'form-control')) }}
             </div>
         </div>
 

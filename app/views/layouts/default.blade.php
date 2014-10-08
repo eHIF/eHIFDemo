@@ -10,7 +10,7 @@
     <link href="{{URL::asset('bs-binary-admin/assets/css/font-awesome.css')}}" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
     <link href="{{URL::asset('bs-binary-admin/assets/css/custom.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('bower_resources/datatables/media/css/jquery.dataTables.css')}}" rel="stylesheet" />
+    <link href="{{URL::asset('bower_resources/DataTables/media/css/jquery.dataTables.css')}}" rel="stylesheet" />
     <link href="{{URL::asset('bower_resources/angular-datatables/dist/datatables.bootstrap.css')}}" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />

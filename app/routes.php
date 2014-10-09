@@ -33,8 +33,10 @@ Route::get('patients/reception', function(){
 });
 
 Route::get("api/patients/search/{term?}", "PatientsController@api_search");
-Route::post("api/patients/update", "PatientsController@update");
-Route::post("api/patients/create", "PatientsController@create");
+Route::post("api/patients/update", "PatientsController@api_update");
+Route::post("api/patients/create", "PatientsController@api_create");
+
+Route::resource('patients', 'PatientsController');
 
 Route::get("visits/create/{patient_id?}", "VisitsController@create");
 Route::get("visits", "VisitsController@index");
@@ -49,4 +51,7 @@ Route::delete('api/sessions/referrals', 'ReferralsController@api_delete');
 Route::get('api/sessions/referrals/types', 'ReferralTypesController@api_index');
 
 
-Route::post('sessions/close',"SessionsController@close");
+Route::post('sessions/close',array("as"=>"sessions.close", "uses"=>"SessionsController@close"));
+
+
+Route::resource('appointments', 'AppointmentsController');

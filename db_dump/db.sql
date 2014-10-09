@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 08 Οκτ 2014 στις 11:00:58
+-- Χρόνος δημιουργίας: 10 Οκτ 2014 στις 01:04:50
 -- Έκδοση διακομιστή: 5.6.15-log
 -- Έκδοση PHP: 5.5.8
 
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `appointments` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `comments` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `start` datetime NOT NULL,
-  `end` datetime NOT NULL,
+  `when` datetime NOT NULL,
   `patient_id` int(11) NOT NULL,
+  `context` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `scheduler_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `appointments_patient_id_foreign` (`patient_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -89,27 +89,21 @@ CREATE TABLE IF NOT EXISTS `medical_sessions` (
   `symptoms` text COLLATE utf8_unicode_ci NOT NULL,
   `doctor_id` int(11) NOT NULL,
   `diagnosis` text COLLATE utf8_unicode_ci NOT NULL,
+  `closed` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `medical_sessions`
 --
 
-INSERT INTO `medical_sessions` (`id`, `created_at`, `updated_at`, `visit_id`, `patient_id`, `symptoms`, `doctor_id`, `diagnosis`) VALUES
-  (1, '2014-10-03 19:26:44', '2014-10-03 19:26:44', 0, 0, 'sdf', 0, ''),
-  (2, '2014-10-03 19:35:57', '2014-10-03 19:35:57', 19, 1, 'tyut', 0, ''),
-  (3, '2014-10-03 19:35:57', '2014-10-03 19:35:57', 19, 1, '', 0, ''),
-  (4, '2014-10-03 19:36:14', '2014-10-03 19:36:14', 19, 1, 'tyut', 0, ''),
-  (5, '2014-10-03 19:36:14', '2014-10-03 19:36:14', 19, 1, '', 0, ''),
-  (6, '2014-10-03 19:37:13', '2014-10-03 19:37:13', 19, 1, 'tyut', 0, ''),
-  (7, '2014-10-03 19:38:48', '2014-10-03 19:38:48', 19, 1, 'tyut', 0, ''),
-  (8, '2014-10-03 19:42:48', '2014-10-03 19:42:48', 19, 1, 'tyut', 0, ''),
-  (9, '2014-10-04 09:33:51', '2014-10-04 09:33:51', 15, 1, 'Πονόλαιμος', 0, ''),
-  (10, '2014-10-04 22:28:20', '2014-10-04 11:39:16', 27, 2, 'dsf', 1, ''),
-  (11, '2014-10-05 10:36:34', '2014-10-05 07:36:34', 15, 1, 'sdf', 1, 'Πνευμονικό οίδημα'),
-  (12, '2014-10-05 11:54:23', '2014-10-05 08:54:01', 15, 1, 'sdf', 1, ''),
-  (13, '2014-10-05 12:33:15', '2014-10-05 09:33:15', 27, 2, 'dsf', 1, '');
+INSERT INTO `medical_sessions` (`id`, `created_at`, `updated_at`, `visit_id`, `patient_id`, `symptoms`, `doctor_id`, `diagnosis`, `closed`) VALUES
+  (15, '2014-10-09 14:48:57', '2014-10-09 11:48:57', 32, 1, 'sdf', 1, '', 0),
+  (10, '2014-10-04 22:28:20', '2014-10-04 11:39:16', 27, 2, 'dsf', 1, '', 0),
+  (11, '2014-10-05 10:36:34', '2014-10-05 07:36:34', 15, 1, 'sdf', 1, 'Πνευμονικό οίδημα', 0),
+  (12, '2014-10-05 11:54:23', '2014-10-05 08:54:01', 15, 1, 'sdf', 1, '', 0),
+  (13, '2014-10-05 12:33:15', '2014-10-05 09:33:15', 27, 2, 'dsf', 1, '', 0),
+  (14, '2014-10-08 14:06:01', '2014-10-08 11:06:01', 31, 7, 'ghj', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -119,20 +113,22 @@ INSERT INTO `medical_sessions` (`id`, `created_at`, `updated_at`, `visit_id`, `p
 
 CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `batch` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `migrations`
 --
 
-INSERT INTO `migrations` (`migration`, `batch`) VALUES
-  ('2014_09_05_203227_confide_setup_users_table', 1),
-  ('2014_09_05_214338_entrust_setup_tables', 1),
-  ('2014_09_20_154713_create_patients_table', 2),
-  ('2014_09_21_232644_create_appointments_table', 3),
-  ('2014_09_21_233853_create_visits_table', 4),
-  ('2014_09_210_232644_create_appointments_table', 5);
+INSERT INTO `migrations` (`migration`, `batch`, `id`) VALUES
+  ('2014_09_05_203227_confide_setup_users_table', 1, 1),
+  ('2014_09_05_214338_entrust_setup_tables', 1, 2),
+  ('2014_09_20_154713_create_patients_table', 2, 3),
+  ('2014_09_21_232644_create_appointments_table', 3, 4),
+  ('2014_09_21_233853_create_visits_table', 4, 5),
+  ('2014_10_09_225539_create_appointments_table', 5, 7);
 
 -- --------------------------------------------------------
 
@@ -169,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `patients`
@@ -178,6 +174,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
 INSERT INTO `patients` (`id`, `name`, `surname`, `amka`, `fathername`, `mothername`, `address`, `phone`, `mobile`, `zip`, `area`, `nationality`, `birthday`, `updated_at`, `created_at`) VALUES
   (1, 'Ασθένιος', 'Νοσοκομίου', '11888', 'Ιπποκράτης', 'Τασούλα', '', '', '', '', '', '', '0000-00-00', '2014-09-29 06:26:10', '0000-00-00 00:00:00'),
   (2, 'Αριστοτέλης', 'Νικομάχους', '13821', '', '', '', '', '', '', '', '', '0000-00-00', '2014-09-29 09:26:06', '0000-00-00 00:00:00'),
+  (7, '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '2014-10-08 10:37:36', '2014-10-08 10:37:36'),
   (6, '44', 'sdf', '', '', '', '', '', '', '', '', '', '0000-00-00', '2014-09-29 07:28:04', '2014-09-29 07:28:04');
 
 -- --------------------------------------------------------
@@ -245,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `referrals` (
   `inhouse` tinyint(1) NOT NULL,
   `referral_type_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `referrals`
@@ -267,7 +264,9 @@ INSERT INTO `referrals` (`id`, `created_at`, `updated_at`, `patient_id`, `sessio
   (23, '2014-10-04 19:47:19', '2014-10-04 19:47:19', 2, 10, 0, '44', 0, 1),
   (24, '2014-10-05 07:30:50', '2014-10-05 07:30:50', 1, 11, 0, 'sdf', 0, 1),
   (25, '2014-10-05 07:35:31', '2014-10-05 07:35:31', 1, 11, 0, 'A/A Θώρακος', 0, 2),
-  (26, '2014-10-05 09:27:38', '2014-10-05 09:27:38', 1, 12, 0, 'y', 0, 1);
+  (26, '2014-10-05 09:27:38', '2014-10-05 09:27:38', 1, 12, 0, 'y', 0, 1),
+  (27, '2014-10-09 11:49:04', '2014-10-09 11:49:04', 1, 15, 0, 'df', 0, 1),
+  (28, '2014-10-09 11:49:25', '2014-10-09 11:49:25', 1, 15, 0, 'dfg', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -359,13 +358,15 @@ CREATE TABLE IF NOT EXISTS `visits` (
   KEY `visits_patient_id_foreign` (`patient_id`),
   KEY `visits_receptionuser_id_foreign` (`reception_user_id`),
   KEY `visits_doctoruser_id_foreign` (`doctoruser_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `visits`
 --
 
 INSERT INTO `visits` (`id`, `when`, `symptoms`, `doctoruser_id`, `reception_user_id`, `patient_id`, `created_at`, `updated_at`, `visit_classification_id`, `until`, `department_id`, `visit_status_id`) VALUES
+  (32, '2014-10-09 14:48:02', 'sdf', 0, 1, 1, '2014-10-09 11:48:49', '2014-10-09 11:48:49', 1, '0000-00-00 00:00:00', 0, 1),
+  (31, '2014-10-08 13:37:37', 'ghj', 0, 1, 7, '2014-10-08 10:37:46', '2014-10-08 10:37:46', 2, '0000-00-00 00:00:00', 0, 1),
   (30, '2014-10-05 12:31:58', 'Πόνος', 0, 1, 1, '2014-10-05 09:32:05', '2014-10-05 09:32:05', 1, '0000-00-00 00:00:00', 0, 1),
   (15, '2014-09-29 20:21:42', 'sdfsdf', 0, 1, 1, '2014-09-29 17:34:28', '2014-09-29 17:34:28', 1, '0000-00-00 00:00:00', 0, 0),
   (16, '2014-10-03 11:41:41', 'gdfghdfgh', 0, 1, 1, '2014-10-03 08:41:46', '2014-10-03 08:41:46', 1, '0000-00-00 00:00:00', 0, 0),

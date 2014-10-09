@@ -46,16 +46,16 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
                 @endif
 
                 <li>
-                    <a  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                    <a  href="{{URL::to("sessions")}}"><i class="fa fa-dashboard fa-3x"></i> Συνεδρίες</a>
                 </li>
                 <li>
-                    <a  href="ui.html"><i class="fa fa-desktop fa-3x"></i> UI Elements</a>
+                    <a  href="{{URL::to('patients')}}"><i class="fa fa-desktop fa-3x"></i> Ασθενείς</a>
                 </li>
                 <li>
-                    <a  href="tab-panel.html"><i class="fa fa-qrcode fa-3x"></i> Tabs & Panels</a>
+                    <a  href="{{URL::to('visits')}}"><i class="fa fa-qrcode fa-3x"></i>Επισκέψεις</a>
                 </li>
                 <li  >
-                    <a  href="chart.html"><i class="fa fa-bar-chart-o fa-3x"></i> Morris Charts</a>
+                    <a  href="{{URL::to('appointments')}}"><i class="fa fa-bar-chart-o fa-3x"></i>Ραντεβού</a>
                 </li>
                 <li  >
                     <a  href="table.html"><i class="fa fa-table fa-3x"></i> Table Examples</a>

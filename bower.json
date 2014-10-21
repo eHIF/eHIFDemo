@@ -30,6 +30,7 @@
     "angular": "~1.2.25",
     "angular-route": "~1.2.25",
     "angular-resource": "~1.2.25",
-    "angular-datatables": "~0.2.0"
+    "angular-datatables": "~0.2.0",
+    "eonasdan-bootstrap-datetimepicker": "~3.1.3"
   }
 }

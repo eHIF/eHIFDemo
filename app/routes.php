@@ -35,6 +35,7 @@ Route::get('patients/reception', function(){
 Route::get("api/patients/search/{term?}", "PatientsController@api_search");
 Route::post("api/patients/update", "PatientsController@api_update");
 Route::post("api/patients/create", "PatientsController@api_create");
+Route::get("api/patients/index", "PatientsController@api_index");
 
 Route::resource('patients', 'PatientsController');
 
@@ -50,8 +51,13 @@ Route::post('api/sessions/referrals', 'ReferralsController@api_store');
 Route::delete('api/sessions/referrals', 'ReferralsController@api_delete');
 Route::get('api/sessions/referrals/types', 'ReferralTypesController@api_index');
 
-
 Route::post('sessions/close',array("as"=>"sessions.close", "uses"=>"SessionsController@close"));
 
 
 Route::resource('appointments', 'AppointmentsController');
+
+
+Route::get('processes/list',"ProcessesController@enlist");
+
+Route::get("bpmn/start", array("as"=>'bpmn.start', "uses"=>"BpmnController@start"));
+Route::get("bpmn/next", array("as"=>'bpmn.next', "uses"=>"BpmnController@next"));

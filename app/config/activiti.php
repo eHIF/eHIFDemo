@@ -8,7 +8,7 @@
  */
 
 return  array(
-    "endpoint"=>"http://localhost:8080/activiti-rest/service/",
+    "endpoint"=>"http://ws307.math.auth.gr:8080/activiti-rest/service/",
     "username"=>"kermit",
     "password"=>"kermit"
 

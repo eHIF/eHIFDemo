@@ -18,13 +18,16 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-       // $activiti = new Activiti("http://ws307.math.auth.gr:8080/activiti-rest/service/", "kermit", "kermit");
-      //  $processes = $activiti->processes->get();
+       $activiti =  new Activiti(
+		   Config::get('activiti.endpoint'),
+		   Config::get('activiti.username'),
+		   Config::get('activiti.password'));
+        $processes = $activiti->processes->get();
 
-      //  var_dump($processes[0]->processinstances[0]->startUserId);
+       var_dump($processes[1]->processinstances[0]->startUserId);
 
         if(Auth::user()==null){
-            return Redirect::to(URL::to('users/login'));
+         //   return Redirect::to(URL::to('users/login'));
         }
 
 		return View::make('hello');

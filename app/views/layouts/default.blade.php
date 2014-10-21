@@ -12,6 +12,10 @@
     <link href="{{URL::asset('bs-binary-admin/assets/css/custom.css')}}" rel="stylesheet" />
     <link href="{{URL::asset('bower_resources/DataTables/media/css/jquery.dataTables.css')}}" rel="stylesheet" />
     <link href="{{URL::asset('bower_resources/angular-datatables/dist/datatables.bootstrap.css')}}" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="{{URL::asset('bower_resources/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')}}" />
+
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -44,6 +48,9 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
                     <h3 style="color: orange" class="title">{{{Auth::user()->department->name}}}</h3>
                 </li>
                 @endif
+                <li  >
+                    <a  href="form.html"><i class="fa fa-edit fa-3x"></i> Διαδικασίες </a>
+                </li>
 
                 <li>
                     <a  href="{{URL::to("sessions")}}"><i class="fa fa-dashboard fa-3x"></i> Συνεδρίες</a>
@@ -60,40 +67,25 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
                 <li  >
                     <a  href="table.html"><i class="fa fa-table fa-3x"></i> Table Examples</a>
                 </li>
-                <li  >
-                    <a  href="form.html"><i class="fa fa-edit fa-3x"></i> Forms </a>
-                </li>
 
 
                 <li>
-                    <a href="#"><i class="fa fa-sitemap fa-3x"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-sitemap fa-3x"></i> Προσωπικό <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Second Level Link</a>
+                            <a href="#">Ιατροί</a>
                         </li>
                         <li>
-                            <a href="#">Second Level Link</a>
+                            <a href="#">Νοσηλευτές</a>
                         </li>
                         <li>
-                            <a href="#">Second Level Link<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Link</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Link</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Link</a>
-                                </li>
-
-                            </ul>
-
+                            <a href="#">Διοικητικοί</a>
                         </li>
+
                     </ul>
                 </li>
                 <li  >
-                    <a class="active-menu"  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
+                    <a class="active-menu"  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Αναφορές </a>
                 </li>
             </ul>
 
@@ -103,6 +95,8 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper" >
         <div id="page-inner">
+
+            @yield('breadcrumb')
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-title">
@@ -138,6 +132,18 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
 <script src="{{URL::asset('bs-binary-admin/assets/js/custom.js')}}"></script>
 
 <script src="{{ URL::asset('bower_resources/DataTables/media/js/jquery.dataTables.js')}}"></script>
+
+
+
+
+<script type="text/javascript" src="{{URL::asset('bower_resources/moment/min/moment.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('bower_resources/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('bower_resources/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+
+
+
+
+
 
 <script src="{{ URL::asset('bower_resources/angular/angular.js')}}"></script>
 <script src="{{ URL::asset('bower_resources/angular-resource/angular-resource.js')}}"></script>

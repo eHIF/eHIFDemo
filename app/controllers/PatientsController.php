@@ -33,7 +33,11 @@ class PatientsController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('patients.create');
+
+		$genders = Gender::all()->lists("name","id");
+		$countries = Country::all()->lists("name","id");
+
+		return View::make('patients.create')->with("genders", $genders)->with("countries", $countries);
 	}
 
 	/**
@@ -82,12 +86,15 @@ class PatientsController extends BaseController {
 	{
 		$patient = $this->patient->find($id);
 
+		$genders = Gender::all()->lists("name","id");
+		$countries = Country::all()->lists("name","id");
+
 		if (is_null($patient))
 		{
 			return Redirect::route('patients.index');
 		}
 
-		return View::make('patients.edit', compact('patient'));
+		return View::make('patients.edit', compact('patient'))->with("genders", $genders)->with("countries", $countries);
 	}
 
 	/**
@@ -145,4 +152,10 @@ class PatientsController extends BaseController {
 
 
     }
+
+	public function api_index(){
+		$patients = Patient::get();
+
+		return array("data"=>$patients);
+	}
 }

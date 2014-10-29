@@ -61,3 +61,26 @@ Route::get('processes/list',"ProcessesController@enlist");
 
 Route::get("bpmn/start", array("as"=>'bpmn.start', "uses"=>"BpmnController@start"));
 Route::get("bpmn/next", array("as"=>'bpmn.next', "uses"=>"BpmnController@next"));
+
+
+
+$mappings = Config::get('activiti.mappings');
+
+foreach ($mappings as $process=>$tasks) {
+    foreach ($tasks as $task=>$details) {
+        Route::get("bpmn/runtime/$process/$task/{task_id}/", array(
+            "as"=>"$process.$task",
+            "uses"=>$details["action"],
+        ));
+    }
+
+}
+
+Route::get("bpmn/runtime/{process}/{task_key}/{task_id}", array(
+    "as"=>"process.task",
+    "uses"=>"BpmnController@task",
+));
+Route::post("bpmn/runtime/{task_id}", array(
+    "as"=>"process.task.complete",
+    "uses"=>"BpmnController@complete",
+));

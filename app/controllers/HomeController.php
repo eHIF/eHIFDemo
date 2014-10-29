@@ -24,7 +24,6 @@ class HomeController extends BaseController {
 		   Config::get('activiti.password'));
         $processes = $activiti->processes->get();
 
-       var_dump($processes[1]->processinstances[0]->startUserId);
 
         if(Auth::user()==null){
          //   return Redirect::to(URL::to('users/login'));

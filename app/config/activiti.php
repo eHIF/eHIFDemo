@@ -10,6 +10,15 @@
 return  array(
     "endpoint"=>"http://ws307.math.auth.gr:8080/activiti-rest/service/",
     "username"=>"kermit",
-    "password"=>"kermit"
+    "password"=>"kermit",
+
+
+    "mappings" => array(
+        "D1_1:1:38636" => array(
+            "usertask1"=> array("action"=>"D1Controller@index")
+        ),
+
+
+    ),
 
 );

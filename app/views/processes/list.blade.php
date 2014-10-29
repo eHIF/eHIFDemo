@@ -10,11 +10,11 @@
 @endforeach
 </ul>
 
-{{$tasks[5]->variables[0]->value}}
+
 
 <ul>
     @foreach($tasks as $task)
-    <?php $vars = $tasks[5]->variables;  ?>
+
 
     <li>
 

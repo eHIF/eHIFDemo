@@ -49,7 +49,7 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
                 </li>
                 @endif
                 <li  >
-                    <a  href="form.html"><i class="fa fa-edit fa-3x"></i> Διαδικασίες </a>
+                    <a  href="{{URL::to('processes/list')}}"><i class="fa fa-edit fa-3x"></i> Διαδικασίες </a>
                 </li>
 
                 <li>

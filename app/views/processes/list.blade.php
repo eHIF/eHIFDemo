@@ -6,7 +6,7 @@
 @section("content")
 <ul>
 @foreach($processes as $process)
-<li><a href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}</a></li>
+<li><a href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}▶</a></li>
 @endforeach
 </ul>
 

@@ -23,7 +23,9 @@ class BpmnController extends BaseController {
         $user = $activiti->users->current();
 
         $instance = $process->startInstance(array("patient"=>"1112"));
-        $instance->tasks[0]->assign($user);
+        $firstTask =  $instance->tasks[0];
+        $firstTask->assign($user);
+        return Redirect::to(URL::route("bpmn.next", array("id"=>$firstTask->id)));
         //start the process instance and get its id
         //store the id
         //next

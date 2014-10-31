@@ -4,10 +4,20 @@
 {{$task->name}}
 @stop
 
+@section("scripts")
+<script src="{{URL::asset('bower_resources/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+<script>
+$(document).ready(function(){
+    $('input.datepicker').datepicker({
+    format: "dd-M-yyyy"
+    });
+});
+</script>
+@stop
 
 @section("content")
 
-
+<link rel="stylesheet" href="{{URL::asset('bower_resources/bootstrap-datepicker/css/datepicker.css')}}"/>
 <form method="POST" action="{{URL::route('process.task.complete',array($task->id))}}" class="form-horizontal">
 @foreach($form->formProperties as $field)
 <div class=" form-actions">
@@ -24,7 +34,7 @@
 @elseif($field->type== "string")
 <input name="{{$field->id}}" @if(!$field->writable) disabled @endif value="{{$field->value}}" id="{{$field->id}}" type="text" class="form-control"/>
 @elseif($field->type == "date")
-
+<input  name="{{$field->id}}" @if(!$field->writable) disabled @endif value="{{$field->value}}" id="{{$field->id}}"   type="text" class="datepicker form-control">
 @endif
 
         </div>

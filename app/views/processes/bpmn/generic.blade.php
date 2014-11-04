@@ -26,15 +26,15 @@ $(document).ready(function(){
 
         <div class="col-sm-10">
 @if($field->type== "enum")
-<select class="form-control" name="{{$field->id}}" id="{{$field->id}}">
+<select  @if($field->required) required @endif class="form-control" name="{{$field->id}}" id="{{$field->id}}">
 @foreach($field->enumValues as $enumValue)
 <option value="{{$enumValue->id}}">{{$enumValue->name}}</option>
 @endforeach
 </select>
 @elseif($field->type== "string")
-<input name="{{$field->id}}" @if(!$field->writable) disabled @endif value="{{$field->value}}" id="{{$field->id}}" type="text" class="form-control"/>
+<input name="{{$field->id}}" @if(!$field->writable) disabled @endif @if($field->required) required @endif value="{{$field->value}}" id="{{$field->id}}" type="text" class="form-control"/>
 @elseif($field->type == "date")
-<input  name="{{$field->id}}" @if(!$field->writable) disabled @endif value="{{$field->value}}" id="{{$field->id}}"   type="text" class="datepicker form-control">
+<input  name="{{$field->id}}" @if($field->required) required @endif  @if(!$field->writable) disabled @endif value="{{$field->value}}" id="{{$field->id}}"   type="text" class="datepicker form-control">
 @endif
 
         </div>

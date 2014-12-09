@@ -14,11 +14,17 @@ return  array(
 
 
     "mappings" => array(
-        "D1_1:1:38636" => array(
-            "usertask1"=> array("action"=>"D1Controller@index")
+
+        "D1_1:1:28689" => array(
+            "usertask5"=>array("action"=>"D1Controller@patientInput")
         ),
 
 
+
+    ),
+
+    "versions" => array(
+        "D1_1" => "D1_1:1:28689"
     ),
 
 );

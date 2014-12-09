@@ -72,6 +72,11 @@ foreach ($mappings as $process=>$tasks) {
             "as"=>"$process.$task",
             "uses"=>$details["action"],
         ));
+
+        Route::post("bpmn/runtime/$process/$task/{task_id}/complete", array(
+            "as"=>"$process.$task.complete",
+            "uses"=>$details["action"]."_complete",
+        ));
     }
 
 }

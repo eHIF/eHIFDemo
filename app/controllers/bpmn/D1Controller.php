@@ -16,4 +16,25 @@ class D1Controller extends BaseController{
         $task = $activiti->tasks->get($task_id);
         dd($task->form);
     }
+
+
+
+    public function patientInput( $task_id){
+
+        $activiti = BaseHandler::$activiti;
+        $task = $activiti->tasks->get($task_id);
+
+        $config =  Config::get("activiti.versions");
+
+        return View::make("processes.bpmn.patient_input")->with("form", $task->form)->with("task", $task)->
+        with("config", Config::get('activiti.versions'))->with("process", $config["D1_1"])
+            ->with("taskName","usertask5")->with("taskId",$task_id);
+    }
+
+    public function patientInput_complete(){
+        echo 'lol';
+        die;
+
+    }
+
 }

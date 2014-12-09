@@ -71,14 +71,17 @@ class BpmnController extends BaseController {
 
 
 
-        $task->complete(Input::all());
+
 
         try{
+            $task->complete(Input::all());
             $processInstance = $activiti->processInstances->get($processInstanceId);
             $tasks = $processInstance->gettasks();
 
             //dd($tasks);
 
+            if(empty($tasks))
+                return Redirect::to(URL::to("processes/list"));
             $next_task = $tasks[0];
 
             return Redirect::to(URL::route("bpmn.next", array("id"=>$next_task->id)));

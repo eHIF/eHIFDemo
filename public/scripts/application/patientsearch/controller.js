@@ -24,8 +24,7 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,Patien
     };
     $scope.dtColumns = [
 
-        DTColumnBuilder.newColumn('name').withTitle('Όνομα'),
-        DTColumnBuilder.newColumn('surname').withTitle('Επώνυμο')
+        DTColumnBuilder.newColumn('onomatepwnimo').withTitle('Όνοματεπώνυμο'),
     ];
 
 
@@ -40,27 +39,7 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,Patien
 
     $scope.error = "";
 
-    $scope.saveAndContinue = function(){
-        PatientsService.update($scope.selection).$promise.then(
-            //success
-            function( value ){ window.location.href = baseURL + "/visits/create/" + $scope.selection.id},
-            //error
-            function( error ){$scope.error = "Δεν ήταν δυνατή η αποθήκευση";}
-        );
 
-    };
-
-    $scope.newAndContinue = function(){
-        PatientsService.create($scope.newvisitor).$promise.then(
-            //success
-            function( value ){
-                window.location.href = baseURL + "/visits/create/" + value.id},
-            //error
-            function( error ){$scope.error = "Δεν ήταν δυνατή η αποθήκευση";}
-        );
-
-
-    };
 
    /* var updateClock = function() {
         $scope.clock = new Date();

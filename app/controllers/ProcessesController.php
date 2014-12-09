@@ -17,7 +17,7 @@ class ProcessesController extends BaseController{
 
         $tasks = $user->tasks;
         foreach($tasks as $task)
-var_dump($task->variables);
+//var_dump($task->variables);
         return View::make("processes.list")
             ->with("processes",$processes)
             ->with("tasks", $tasks);

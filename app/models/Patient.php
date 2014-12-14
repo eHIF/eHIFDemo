@@ -3,7 +3,7 @@
 class Patient extends Eloquent {
 	protected $guarded = array();
 
-    public $fillable = array("name", "surname", "amka", "fathername", "mothername", "address", "zip", "phone", "mobile", "nationality", "birthday", "area");
+    public $fillable = array("onomatepwnimo", "patronimo", "amka", "town", "etosgennisis");
 
 	public static $rules = array();
 

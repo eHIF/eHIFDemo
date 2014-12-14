@@ -15,7 +15,10 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,Patien
                 });
             });
             return nRow;
-        });
+        })
+        .withOption('searching', false)
+        .withOption('lengthChange', false)
+    ;
 
     $scope.selection = {};
 

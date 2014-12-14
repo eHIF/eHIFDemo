@@ -9,14 +9,15 @@
 
 return  array(
     "endpoint"=>"http://ws307.math.auth.gr:8080/activiti-rest/service/",
-    "username"=>"kermit",
-    "password"=>"kermit",
+    "username"=>"gonzo",
+    "password"=>"gonzo",
 
 
     "mappings" => array(
 
-        "D1_1:1:28689" => array(
-            "usertask5"=>array("action"=>"D1Controller@patientInput")
+        "D1_1:1:28799" => array(
+            "usertask5"=>array("action"=>"D1Controller@patientInput"),
+            "usertask4"=>array("action"=>"D1Controller@escortInput")
         ),
 
 
@@ -24,7 +25,7 @@ return  array(
     ),
 
     "versions" => array(
-        "D1_1" => "D1_1:1:28689"
+        "D1_1" => "D1_1:1:28799"
     ),
 
 );

@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+
+
 @section('pagetitle')
 Κατάλογος Ασθενών
 
@@ -26,7 +28,7 @@
 			"ajax": "{{URL::to('api/patients/index')}}",
 			"columns": [
 				{render: function ( data, type, row ) {
-					return "<a href='"+baseURL+"/patients/"+row.id+"'>" + row.name +' '+ row.surname+"</a>";
+					return "<a href='"+baseURL+"/patients/"+row.id+"'>" + row.onomatepwnimo +"</a>";
 				} },
 				{ "data": "amka" }
 

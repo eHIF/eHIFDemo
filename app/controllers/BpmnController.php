@@ -17,14 +17,14 @@ class BpmnController extends BaseController {
     public function start(){
         $id = Input::get("id");
 
-        $activiti = BaseHandler::$activiti;
+        $activiti = \eHIF\ActivitiEndpoint::instance();
 
         $process = $activiti->processes->get($id);
         $user = $activiti->users->current();
 
         $instance = $process->startInstance(array("patient"=>"1112"));
         $firstTask =  $instance->tasks[0];
-        $firstTask->assign($user);
+       // $firstTask->assign($user);
         return Redirect::to(URL::route("bpmn.next", array("id"=>$firstTask->id)));
         //start the process instance and get its id
         //store the id
@@ -34,7 +34,7 @@ class BpmnController extends BaseController {
 
     protected function next(){
         $task_id = Input::get("id");
-        $activiti = BaseHandler::$activiti;
+        $activiti = \eHIF\ActivitiEndpoint::instance();
         $task = $activiti->tasks->get($task_id);
 
         $process_id = $task->processDefinitionId;
@@ -56,14 +56,21 @@ class BpmnController extends BaseController {
 
     public function task($process_id, $task_key, $task_id){
 
-        $activiti = BaseHandler::$activiti;
+        $activiti = \eHIF\ActivitiEndpoint::instance();
         $task = $activiti->tasks->get($task_id);
+
+
+        $user = $activiti->users->current();
+
+
+        $task->assign($user);
+
 
         return View::make("processes.bpmn.generic")->with("form", $task->form)->with("task", $task);
     }
 
     public function complete($task_id){
-        $activiti = BaseHandler::$activiti;
+        $activiti = \eHIF\ActivitiEndpoint::instance();
 
         $task = $activiti->tasks->get($task_id);
 
@@ -88,7 +95,7 @@ class BpmnController extends BaseController {
         }
         catch(GuzzleHttp\Exception\ClientException $ex){
             if($ex->getCode()==404){
-                return Redirect::to(URL::to("processes/list"));
+                return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
             }
 
         }

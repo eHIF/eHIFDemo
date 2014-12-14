@@ -154,8 +154,17 @@ class PatientsController extends BaseController {
     }
 
 	public function api_index(){
-		$patients = Patient::get();
+		$patients = Patient::limit(Input::get('length'))->offset(Input::get('start'))->get();
+		$total = Patient::count();
+		return
+			array(
+				"data"=>$patients,
+				"recordsTotal"=>$total,
+				"recordsFiltered"=>$total,
+				"draw"=>Input::get("draw")
 
-		return array("data"=>$patients);
+
+
+		);
 	}
 }

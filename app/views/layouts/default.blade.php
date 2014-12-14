@@ -36,7 +36,7 @@
         <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Αποσύνδεση</a> </div>
+font-size: 16px;"> <i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Αποσύνδεση</a> </div>
     @endif
     </nav>
     <!-- /. NAV TOP  -->
@@ -49,26 +49,21 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
                 </li>
                 @endif
                 <li  >
-                    <a  href="{{URL::to('processes/list')}}"><i class="fa fa-edit fa-3x"></i> Διαδικασίες </a>
+                    <a class="{{ Request::is( 'processes*') ? 'active-menu' : '' }}"  href="{{URL::to('processes/list')}}"><i class="fa fa-edit fa-3x"></i> Διαδικασίες   <span class="pull-right label label-danger">@include('layouts/active_processes')</span></a>
                 </li>
 
                 <li>
-                    <a  href="{{URL::to("sessions")}}"><i class="fa fa-dashboard fa-3x"></i> Συνεδρίες</a>
+                    <a class="{{ Request::is( 'sessions*') ? 'active-menu' : '' }}"  href="{{URL::to("sessions")}}"><i class="fa fa-dashboard fa-3x"></i> Συνεδρίες</a>
                 </li>
                 <li>
-                    <a  href="{{URL::to('patients')}}"><i class="fa fa-desktop fa-3x"></i> Ασθενείς</a>
+                    <a class="{{ Request::is( 'patients*') ? 'active-menu' : '' }}" href="{{URL::to('patients')}}"><i class="fa fa-desktop fa-3x"></i> Ασθενείς</a>
                 </li>
                 <li>
-                    <a  href="{{URL::to('visits')}}"><i class="fa fa-qrcode fa-3x"></i>Επισκέψεις</a>
+                    <a class="{{ Request::is( 'visits*') ? 'active-menu' : '' }}"  href="{{URL::to('visits')}}"><i class="fa fa-qrcode fa-3x"></i>Επισκέψεις</a>
                 </li>
                 <li  >
-                    <a  href="{{URL::to('appointments')}}"><i class="fa fa-bar-chart-o fa-3x"></i>Ραντεβού</a>
+                    <a class="{{ Request::is( 'appointments*') ? 'active-menu' : '' }}"  href="{{URL::to('appointments')}}"><i class="fa fa-bar-chart-o fa-3x"></i>Ραντεβού</a>
                 </li>
-                <li  >
-                    <a  href="table.html"><i class="fa fa-table fa-3x"></i> Table Examples</a>
-                </li>
-
-
                 <li>
                     <a href="#"><i class="fa fa-sitemap fa-3x"></i> Προσωπικό <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -85,7 +80,7 @@ font-size: 16px;"> {{Auth::user()->name}} &nbsp; <a href="#" class="btn btn-dang
                     </ul>
                 </li>
                 <li  >
-                    <a class="active-menu"  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Αναφορές </a>
+                    <a  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Αναφορές </a>
                 </li>
             </ul>
 

@@ -18,6 +18,7 @@ class BaseHandler {
     public static $activiti;
 
     public static function init(){
+
         BaseHandler::$activiti =   new Activiti(
             Config::get('activiti.endpoint'),
             Config::get('activiti.username'),

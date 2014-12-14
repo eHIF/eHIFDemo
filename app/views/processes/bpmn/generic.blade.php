@@ -46,8 +46,10 @@
                 </div>
             </div>
         @endforeach
+        <div class="pull-right">
+            <button class="btn btn-primary btn-lg" type="submit">Επόμενο βήμα</button>
+        </div>
 
-        <button type="submit">Επόμενο βήμα</button>
     </form>
 
 

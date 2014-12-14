@@ -1,0 +1,1 @@
+{{count(\eHIF\ActivitiEndpoint::tasks())}}

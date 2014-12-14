@@ -16,23 +16,27 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+html{
+    background:#C8BC9D;
+}
+
  #wrapper {
     width: 100%;
-    background:#202020;
+    background:#443955;
 }
 
 #page-wrapper {
     padding: 15px 15px;
-    min-height: 600px;
-    background:#F3F3F3;
+
+    background:#C8BC9D;
    
 }
 #page-inner {
     width:100%;
     margin:10px 20px 10px 0px;
-    background-color:#fff!important;
+    background-color:#F5EDD7!important;
     padding:10px;
-    min-height:1200px;
+
 }
 
 .text-center {
@@ -42,7 +46,7 @@ body {
     border:1px solid #f3f3f3;
 }
 h2 {
-    color: #f00;
+    color: #1E323D;
 }
 h4 {
     padding-top:10px;
@@ -207,7 +211,7 @@ max-width:170px;
 
 .navbar-cls-top .navbar-brand {
 	color: #fff;
-background: #f15a24;
+background: #1E323D;
 width: 260px;
 text-align: center;
 height: 60px;
@@ -215,7 +219,7 @@ font-size: 30px;
 font-weight: 700;
 }
 .active-menu {
-    background-color: #834028 !important;
+    background-color: #2E2241 !important;
 }
 .arrow {
     float: right;
@@ -250,7 +254,7 @@ font-weight: 700;
 }
 .sidebar-collapse .nav > li > a {
 	color:#fff;
-	background:#202020;
+	background:#5D516F;
 	text-shadow:none;
 	
 }
@@ -263,7 +267,7 @@ font-weight: 700;
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
 	
-	background:#0A0A0A;
+	background:#9C95A7;
 	outline:0;
 }
 
@@ -275,7 +279,7 @@ font-weight: 700;
 	left:20px;
 	width:15px;
 	height:1px;
-	background:#f15a24;
+	background:#F5EDD7;
 	top:20px;
 }
 .nav-second-level > li > a:after,
@@ -286,7 +290,7 @@ font-weight: 700;
 	left:20px;
 	width:1px;
 	height:100%;
-	background:#f15a24;
+	background:#F5EDD7;
 	top:0px;
 	z-index:10;
 }
@@ -300,17 +304,17 @@ font-weight: 700;
 }
 .navbar-side {
 	border:none;
-	background-color: #202020;
+	background-color: #443955;
 	
 }
 .navbar-cls-top {
-	background:#4D4D4D;
+	background:#34464F;
 	border-bottom:none;
 	
 }
 .navbar-cls-top .navbar-brand:hover {
 
-background: #f15a24;
+background: #34464F;
 color:#fff;
 
 }
@@ -320,10 +324,10 @@ border:0px solid black;
      
 }
 .navbar-header {
-    background: #A70303;
+    background: #7D7150;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-background-color: #f15a24;
+background-color: #F5EDD7;
 }
 .navbar-default .navbar-toggle {
 border-color: #fff;
@@ -358,7 +362,7 @@ line-height: 1.428571429;
      #page-wrapper{
                margin: 0 0 0 260px;
         padding: 15px 30px;
-        min-height: 1200px;
+
 		
     }
 	
@@ -385,4 +389,12 @@ line-height: 1.428571429;
 
 .dataTables_wrapper tr{
     cursor: pointer;
+}
+
+.breadcrumb{
+    background:#C8BC9D;
+}
+
+#main-menu h3{
+    color:#C8BC9D;
 }

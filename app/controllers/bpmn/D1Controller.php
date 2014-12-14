@@ -1,5 +1,4 @@
 <?php
-use eHIF\events\BaseHandler;
 
 /**
  * Created by PhpStorm.

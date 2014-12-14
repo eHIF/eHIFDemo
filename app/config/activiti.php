@@ -15,9 +15,12 @@ return  array(
 
     "mappings" => array(
 
-        "D1_1:1:28799" => array(
+        "D1_1" => array(
             "usertask5"=>array("action"=>"D1Controller@patientInput"),
             "usertask4"=>array("action"=>"D1Controller@escortInput")
+        ),
+        "D1_2" => array(
+            "usertask1"=>array("action"=>"D2Controller@incidentClassification"),
         ),
 
 
@@ -25,7 +28,8 @@ return  array(
     ),
 
     "versions" => array(
-        "D1_1" => "D1_1:1:28799"
+        "D1_1" => "D1_1:1:28799",
+        "D1_2" => "D1_2:1:38440",
     ),
 
 );

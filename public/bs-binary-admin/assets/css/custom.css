@@ -17,7 +17,8 @@ body {
 }
 
 html{
-    background:#C8BC9D;
+    background: #C8BC9D;
+
 }
 
  #wrapper {
@@ -397,4 +398,8 @@ line-height: 1.428571429;
 
 #main-menu h3{
     color:#C8BC9D;
+}
+
+#main-menu li .pull-right{
+    margin: 15px 10px;
 }

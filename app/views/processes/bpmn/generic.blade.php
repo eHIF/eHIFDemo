@@ -18,7 +18,7 @@
 @section("content")
 
     <link rel="stylesheet" href="{{URL::asset('bower_resources/bootstrap-datepicker/css/datepicker.css')}}"/>
-    <form method="POST" action="{{URL::route('process.task.complete',array($task->id))}}" class="form-horizontal">
+    <form method="POST" action="@if(!isset($submit)){{URL::route('process.task.complete',array($task->id))}}@else{{$submit}} @endif" class="form-horizontal">
         @foreach($form->formProperties as $field)
             <div class=" form-actions">
                 <div class="form-group">

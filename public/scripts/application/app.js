@@ -1,4 +1,4 @@
-var app = angular.module('eHIFDemo',['ngRoute', "ngResource","datatables"],  function($interpolateProvider) {
+var app = angular.module('eHIFDemo',['ngRoute', "ngResource","datatables", "localytics.directives"],  function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');});
 
@@ -11,6 +11,14 @@ app.service('PatientsSearch', function($resource) {
 
     });
 });
+
+app.service('FindingsService', function($resource) {
+    return $resource(baseURL + "/api/diseases/search/:term", {}, {
+        search: {method: 'GET', params: {}, isArray:true}
+
+    });
+});
+
 app.service('PatientsService', function($resource) {
     return $resource(baseURL + "/api/patients/:verb", {}, {
         update: {method: 'POST', params: {verb:"update"}},

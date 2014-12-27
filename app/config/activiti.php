@@ -22,14 +22,20 @@ return  array(
         "D1_2" => array(
             "usertask1"=>array("action"=>"D2Controller@incidentClassification"),
         ),
+        "D1_3" => array(
+            "usertask3"=>array("action"=>"D3Controller@medicalFindings"),
+        ),
+
+
 
 
 
     ),
 
     "versions" => array(
-        "D1_1" => "D1_1:1:28799",
+        "D1_1" => "D1_1:1:48619",
         "D1_2" => "D1_2:1:38440",
+        "D1_3" => "D1_3:1:48627",
     ),
 
 );

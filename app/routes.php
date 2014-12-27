@@ -33,6 +33,7 @@ Route::get('patients/reception', function(){
 });
 
 Route::get("api/patients/search/{term?}", "PatientsController@api_search");
+Route::get("api/diseases/search/{term?}", "DiseasesController@api_search");
 Route::post("api/patients/update", "PatientsController@api_update");
 Route::post("api/patients/create", "PatientsController@api_create");
 Route::get("api/patients/index", "PatientsController@api_index");

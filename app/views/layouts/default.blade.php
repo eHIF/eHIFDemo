@@ -151,6 +151,9 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
 <script src="{{ URL::asset('bower_resources/angular-resource/angular-resource.js')}}"></script>
 <script src="{{ URL::asset('bower_resources/angular-route/angular-route.js')}}"></script>
 <script src="{{ URL::asset('bower_resources/angular-datatables/dist/angular-datatables.js')}}"></script>
+<script src="{{URL::asset('bower_resources/angular-chosen-localytics/chosen.js')}}"></script>
+
+
 <script src="{{ URL::asset('scripts/application/app.js')}}"></script>
 @yield('scripts')
 </body>

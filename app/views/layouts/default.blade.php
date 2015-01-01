@@ -37,7 +37,7 @@
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::user()->name}} &nbsp; <a href="#"
+font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::user()->name}} &nbsp; <a href="{{URL::to('users/logout')}}"
                                                                                                        class="btn btn-danger square-btn-adjust">Αποσύνδεση</a>
             </div>
         @endif
@@ -78,13 +78,13 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
                         <a href="#"><i class="fa fa-sitemap fa-3x"></i> Προσωπικό <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Ιατροί</a>
+                                <a href="{{URL::to('users/list/doctor')}}">Ιατροί</a>
                             </li>
                             <li>
-                                <a href="#">Νοσηλευτές</a>
+                                <a href="{{URL::to('users/list/nurse')}}">Νοσηλευτές</a>
                             </li>
                             <li>
-                                <a href="#">Διοικητικοί</a>
+                                <a href="{{URL::to('users/list/administration')}}">Διοικητικοί</a>
                             </li>
 
                         </ul>

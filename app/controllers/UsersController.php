@@ -196,4 +196,15 @@ class UsersController extends Controller
 
         return Redirect::to('/');
     }
+
+
+    public function index($role){
+        $users = User::with("roles")->whereHas("roles",  function($q) use($role)
+        {
+            $q->where('name', '=', $role);
+
+        })->get();
+
+        return View::make("users/index")->with("users", $users);
+    }
 }

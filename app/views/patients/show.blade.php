@@ -22,8 +22,8 @@
 <div class="col-sm-12">
 	<div class="col-sm-3">Photo</div>
 	<div class="col-sm-6">
-		<h3>{{{$patient->name}}} {{{mb_substr($patient->fathername,0,1)}}}. {{{$patient->surname}}} </h3>
-		<h5>{{{$patient->birthday}}}  ({{DateTime::createFromFormat('Y-m-d', $patient->birthday,  new DateTimeZone('Europe/Athens'))
+		<h3>{{{$patient->onomatepwnymo}}} του {{{$patient->patronimo}}} </h3>
+		<h5>{{{$patient->etosgennisis}}}  ({{DateTime::createFromFormat('Y-m-d', $patient->etosgennisis,  new DateTimeZone('Europe/Athens'))
 			->diff(new DateTime('now',  new DateTimeZone('Europe/Athens')))
 			->y;}} ετών)</h5>
 		<h5>ΑΜΚΑ: {{{$patient->amka}}}</h5>

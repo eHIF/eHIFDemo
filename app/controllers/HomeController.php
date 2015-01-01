@@ -29,7 +29,7 @@ class HomeController extends BaseController {
            return Redirect::to(URL::to('users/login'));
         }
 
-		return View::make('hello');
+		return Redirect::to('processes/list');
 	}
 
 }

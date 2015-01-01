@@ -20,6 +20,8 @@
     <thead>
     <tr>
         <td>Ασθενής</td>
+        <td>ΑΜΚΑ</td>
+        <td>Ημερομηνία & ώρα</td>
         <td>Ενέργειες</td>
     </tr>
     </thead>
@@ -27,7 +29,9 @@
     @foreach($visits as $visit)
     @if(isset($visit->patient))
     <tr>
-        <td> <div>{{$visit->patient->onomatepwnimo}}</div></td>
+        <td> <div><a href=" {{URL::to("patients/" .$visit->patient->id)}}">{{$visit->patient->onomatepwnimo}}</a></div></td>
+        <td> <div>{{$visit->patient->amka}}</div></td>
+        <td> <div>{{$visit->patient->created_at}}</div></td>
         <td> <div><a class="btn btn-success" href="{{URL::route('sessions.create',array("visit"=>$visit->id))}}">Έναρξη εξέτασης</a></div></td>
     </tr>
 

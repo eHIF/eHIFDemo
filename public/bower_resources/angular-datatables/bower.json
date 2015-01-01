@@ -1,6 +1,6 @@
 {
 	"name": "angular-datatables",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"author": "l-lin",
 	"main": "dist/angular-datatables.js",
     "ignore": [
@@ -25,7 +25,9 @@
     	"_config.yml",
     	"grunt",
         "images",
-        "package.json"
+        "package.json",
+        "archives",
+        "archives.json"
     ],
     "dependencies": {
         "angular": ">=1.2.6",

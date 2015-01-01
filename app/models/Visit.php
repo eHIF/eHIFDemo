@@ -20,7 +20,7 @@ class Visit extends Eloquent{
 
 
     public function visit_classification(){
-        return $this->belongsTo("VisitClassification");
+        return $this->belongsTo("VisitClassification", "taxinomisi_peristatikou");
     }
 
     public function receptionUser(){

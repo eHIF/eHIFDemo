@@ -24,6 +24,7 @@ return  array(
         ),
         "D1_3" => array(
             "usertask3"=>array("action"=>"D3Controller@medicalFindings"),
+            "usertask2"=>array("action"=>"D3Controller@patientInput")
         ),
 
 

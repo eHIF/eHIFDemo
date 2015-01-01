@@ -78,20 +78,29 @@ class BpmnController extends BaseController {
 
 
 
+        try {
 
-
-        try{
             $task->complete(Input::all());
+
             $processInstance = $activiti->processInstances->get($processInstanceId);
             $tasks = $processInstance->gettasks();
 
-            //dd($tasks);
 
-            if(empty($tasks))
-                return Redirect::to(URL::to("processes/list"));
+            if (empty($tasks)) {
+                $subprocesses = $processInstance->getSubprocessInstances();
+                if (empty($subprocesses)) {
+                    return Redirect::to(URL::to("processes/list"));
+                } else {
+                    $tasks = $subprocesses[0]->getTasks();
+                    $task = $tasks[0];
+                    return Redirect::to(URL::action("bpmn.next", array("id" => $task->id)));
+                }
+            }
+
             $next_task = $tasks[0];
 
-            return Redirect::to(URL::route("bpmn.next", array("id"=>$next_task->id)));
+            return Redirect::to(URL::route("bpmn.next", array("id" => $next_task->id)));
+
         }
         catch(GuzzleHttp\Exception\ClientException $ex){
             if($ex->getCode()==404){
@@ -100,7 +109,7 @@ class BpmnController extends BaseController {
 
         }
 
-
+        return Redirect::to(URL::to("processes/list"));
 
     }
 }

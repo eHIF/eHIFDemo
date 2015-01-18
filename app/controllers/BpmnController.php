@@ -10,9 +10,7 @@ use \eHIF\events\BaseHandler;
 
 class BpmnController extends BaseController {
 
-
     protected $processInstanceId = 0;
-
 
     public function start(){
         $id = Input::get("id");
@@ -59,12 +57,9 @@ class BpmnController extends BaseController {
         $activiti = \eHIF\ActivitiEndpoint::instance();
         $task = $activiti->tasks->get($task_id);
 
-
         $user = $activiti->users->current();
 
-
         $task->assign($user);
-
 
         return View::make("processes.bpmn.generic")->with("form", $task->form)->with("task", $task);
     }
@@ -76,21 +71,49 @@ class BpmnController extends BaseController {
 
         $processInstanceId = $task->processInstanceId;
 
-
-
         try {
+            $processInstance = $activiti->processInstances->get($processInstanceId);
+            $variables = $processInstance->variables;
+
+
+            $superprocesses = $processInstance->getSuperprocessInstances();
+            //dd($superprocesses);
 
             $task->complete(Input::all());
 
-            $processInstance = $activiti->processInstances->get($processInstanceId);
             $tasks = $processInstance->gettasks();
-
 
             if (empty($tasks)) {
                 $subprocesses = $processInstance->getSubprocessInstances();
                 if (empty($subprocesses)) {
-                    return Redirect::to(URL::to("processes/list"));
-                } else {
+                    //superprocess???
+
+
+                    if(empty($superprocesses)){
+
+                      //  return Redirect::to(URL::to("processes/list"));
+                    }
+                    else{
+
+                        //manually pass all variables
+                        foreach($superprocesses as $superprocess){
+                            $superprocess->setVariables($variables);
+                        }
+
+                        $tasks = $superprocesses[0]->getTasks();
+                        $task = $tasks[0];
+                        return Redirect::to(URL::action("bpmn.next", array("id" => $task->id)));
+                    }
+                }
+                else{
+
+                    $variables = $processInstance->variables;
+
+                    //manually pass all variables
+                    foreach($subprocesses as $subprocess){
+                        $subprocess->setVariables($variables);
+                    }
+
                     $tasks = $subprocesses[0]->getTasks();
                     $task = $tasks[0];
                     return Redirect::to(URL::action("bpmn.next", array("id" => $task->id)));
@@ -100,13 +123,13 @@ class BpmnController extends BaseController {
             $next_task = $tasks[0];
 
             return Redirect::to(URL::route("bpmn.next", array("id" => $next_task->id)));
-
         }
+
         catch(GuzzleHttp\Exception\ClientException $ex){
             if($ex->getCode()==404){
-                return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
+                throw $ex;
+               // return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
             }
-
         }
 
         return Redirect::to(URL::to("processes/list"));

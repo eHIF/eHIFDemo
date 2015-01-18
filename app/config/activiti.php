@@ -8,7 +8,7 @@
  */
 
 return  array(
-    "endpoint"=>"http://ws307.math.auth.gr:8080/activiti-rest/service/",
+    "endpoint"=>"http://147.102.33.146:8080/activiti-rest/service/",
     "username"=>"gonzo",
     "password"=>"gonzo",
 
@@ -24,6 +24,7 @@ return  array(
         ),
         "D1_3" => array(
             "usertask3"=>array("action"=>"D3Controller@medicalFindings"),
+            "usertask4"=>array("action"=>"D3Controller@comments"),
             "usertask2"=>array("action"=>"D3Controller@patientInput")
         ),
 
@@ -34,8 +35,8 @@ return  array(
     ),
 
     "versions" => array(
-        "D1_1" => "D1_1:1:48619",
-        "D1_2" => "D1_2:1:38440",
+        "D1_1" => "D1_1:1:61212",
+        "D1_2" => "D1_2:1:61217",
         "D1_3" => "D1_3:1:48627",
     ),
 

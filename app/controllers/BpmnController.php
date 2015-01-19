@@ -127,8 +127,8 @@ class BpmnController extends BaseController {
 
         catch(GuzzleHttp\Exception\ClientException $ex){
             if($ex->getCode()==404){
-                throw $ex;
-               // return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
+                //throw $ex;
+                return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
             }
         }
 

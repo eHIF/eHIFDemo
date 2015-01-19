@@ -9,7 +9,7 @@
 
 
 
-class D5Controller extends BpmnController {
+class D10Controller extends BpmnController {
 
     public function patientLeave($task_id){
         $taskName = "usertask6";

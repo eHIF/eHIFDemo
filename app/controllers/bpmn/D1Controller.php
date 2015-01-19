@@ -59,6 +59,15 @@ class D1Controller extends BpmnController{
             ));
 
 
+            $activiti = \eHIF\ActivitiEndpoint::instance();
+            $task = $activiti->tasks->get($task_id);
+            $processInstanceId = $task->processInstanceId;
+            $processInstance = $activiti->processInstances->get($processInstanceId);
+
+            $variables = ["visit_id"=>$visit->id];
+
+            $processInstance->setVariables($variables);
+
 
             return parent::complete($task_id);
         }
@@ -118,6 +127,18 @@ class D1Controller extends BpmnController{
                 "reception_user_id"=>$reception_user_id,
                 "visit_status_id"=>$visit_status_id,
             ));
+
+
+            $activiti = \eHIF\ActivitiEndpoint::instance();
+            $task = $activiti->tasks->get($task_id);
+            $processInstanceId = $task->processInstanceId;
+            $processInstance = $activiti->processInstances->get($processInstanceId);
+
+            $variables = ["visit_id"=>$visit->id];
+
+            $processInstance->setVariables($variables);
+
+
 
 
 

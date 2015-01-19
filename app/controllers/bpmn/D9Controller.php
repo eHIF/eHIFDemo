@@ -11,10 +11,10 @@
 
 class D5Controller extends BpmnController {
 
-    public function patientLeave($task_id){
-        $taskName = "usertask7";
+    public function patientHospitalize($task_id){
+        $taskName = "usertask1";
         $versions =  Config::get('activiti.versions');
-        $processName = $versions["D1_5"];
+        $processName = $versions["D1_9"];
         $submit = URL::route("$processName.$taskName.complete",array("task_id"=>$task_id));
 
         $view = parent::task($processName,$taskName,$task_id)->with("submit", $submit);
@@ -22,7 +22,7 @@ class D5Controller extends BpmnController {
         return $view;
     }
 
-    public function patientLeave_complete($task_id){
+    public function patientHospitalize_complete($task_id){
 
         $activiti = \eHIF\ActivitiEndpoint::instance();
         $task = $activiti->tasks->get($task_id);
@@ -33,13 +33,14 @@ class D5Controller extends BpmnController {
 
         $session = MedicalSession::find($session_id);
 
-        $session->closed=1;
+        $patient = $session->patient;
 
-        $session->save();
-
-        $session->visit->visit_status_id = VisitStatus::where("name","complete")->first()->id;
-
-        $session->visit->save();
+        $hospitalization = Hospitalization::create(
+            [
+                "medical_session_id"=>$session_id,
+                "patient_id"=>$patient->id
+            ]
+        );
 
 
 

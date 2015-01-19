@@ -12,9 +12,9 @@
 class D5Controller extends BpmnController {
 
     public function patientLeave($task_id){
-        $taskName = "usertask7";
+        $taskName = "usertask6";
         $versions =  Config::get('activiti.versions');
-        $processName = $versions["D1_5"];
+        $processName = $versions["D1_10"];
         $submit = URL::route("$processName.$taskName.complete",array("task_id"=>$task_id));
 
         $view = parent::task($processName,$taskName,$task_id)->with("submit", $submit);

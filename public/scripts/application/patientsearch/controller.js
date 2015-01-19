@@ -1,5 +1,5 @@
 app.controller('PatientsSearchController', function($scope,PatientsSearch,PatientsService,DTOptionsBuilder, DTColumnBuilder) {
-
+    $scope.date = new Date();
 
     $scope.reloadData = function() {
         $scope.dtOptions.reloadData();
@@ -28,6 +28,7 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,Patien
     $scope.dtColumns = [
 
         DTColumnBuilder.newColumn('onomatepwnimo').withTitle('Όνοματεπώνυμο'),
+        DTColumnBuilder.newColumn('amka').withTitle('ΑΜΚΑ'),
     ];
 
 

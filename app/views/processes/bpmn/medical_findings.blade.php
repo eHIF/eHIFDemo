@@ -42,10 +42,7 @@
                                     ng-model="selectedDiseases" ng-keyup="alert('LOL')"
                                     ng-options="item as item.title for item in diseases"
                                     >
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
+
                             </select>
 
                         </div>

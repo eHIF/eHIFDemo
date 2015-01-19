@@ -91,7 +91,7 @@ class BpmnController extends BaseController {
 
                     if(empty($superprocesses)){
 
-                      //  return Redirect::to(URL::to("processes/list"));
+                        return Redirect::to(URL::to("processes/list"));
                     }
                     else{
 

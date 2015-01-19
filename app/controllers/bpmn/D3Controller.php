@@ -95,34 +95,39 @@ class D3Controller  extends BpmnController{
 
     public function patientInput( $task_id){
 
-        $activiti = \eHIF\ActivitiEndpoint::instance();
-        $task = $activiti->tasks->get($task_id);
-        $user = $activiti->users->current();
+        $taskName = "usertask2";
+        $versions =  Config::get('activiti.versions');
+        $processName = $versions["D1_3"];
+        $submit = URL::route("$processName.$taskName.complete",array("task_id"=>$task_id));
 
+        $view = parent::task($processName,$taskName,$task_id)->with("submit", $submit);
 
-        $task->assign($user);
-
-        $config =  Config::get("activiti.versions");
-
-        return View::make("processes.bpmn.patient_input")->with("form", $task->form)->with("task", $task)->
-        with("config", Config::get('activiti.versions'))->with("process", $config["D1_3"])
-            ->with("taskName","usertask2")->with("taskId",$task_id);
+        return $view;
     }
 
     public function patientInput_complete($task_id){
+        //dd(Input::all());
+
+        $activiti = \eHIF\ActivitiEndpoint::instance();
+        $task = $activiti->tasks->get($task_id);
+        $processInstanceId = $task->processInstanceId;
+        $processInstance = $activiti->processInstances->get($processInstanceId);
+
+        $variables= $processInstance->getVariables();
 
 
         if(Input::has("amka")){
 
             $patient = Patient::where("amka", Input::get("amka"))->get()->first();
+            $patient->address = Input::get("dieythinsi");
+            $patient->phone = Input::get("tilephono");
+
+            $patient->save();
 
 
+            $visit_id = $variables["visit_id"];
 
-            $status = VisitStatus::where("name", "pending")->first()->id;
-
-            $visit  = Visit::where("patient_id", $patient->id)
-                ->where("visit_status_id",$status)
-                ->get()->first();
+            $visit  = Visit::find($visit_id);
 
             if(!$visit==null){
                 $session = MedicalSession::create(array(
@@ -133,6 +138,8 @@ class D3Controller  extends BpmnController{
 
                 ));
 
+
+
                 $session->save();
 
                 $visit->visit_status()->associate(VisitStatus::where("name","session")->first());
@@ -142,10 +149,7 @@ class D3Controller  extends BpmnController{
                 $activiti = \eHIF\ActivitiEndpoint::instance();
                 $task = $activiti->tasks->get($task_id);
                 $processInstance = $task->processInstance;
-
-                $processInstance->setVariable("visit_id",$visit->id);
                 $processInstance->setVariable("session_id", $session->id);
-
 
 
                 return parent::complete($task_id);

@@ -24,6 +24,27 @@ class D2Controller  extends BpmnController{
     }
 
     public function incidentClassification_complete($task_id){
+
+
+        $vc = VisitClassification::where("alias", Input::get("taxinomisi_peristatikou"))->first();
+
+        $activiti = \eHIF\ActivitiEndpoint::instance();
+        $task = $activiti->tasks->get($task_id);
+        $processInstanceId = $task->processInstanceId;
+        $processInstance = $activiti->processInstances->get($processInstanceId);
+
+
+        $visit_id = $processInstance->getVariable("visit_id");
+
+        $visit =  Visit::find($visit_id);
+
+        $visit->visit_classification()->associate($vc);
+        $visit->save();
+
+        //dd($visit_id);
+
+
+
         return parent::complete($task_id);
 
     }

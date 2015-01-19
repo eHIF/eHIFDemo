@@ -1,4 +1,4 @@
-var app = angular.module('eHIFDemo',['ngRoute', "ngResource","datatables", "localytics.directives"],  function($interpolateProvider) {
+var app = angular.module('eHIFDemo',['ngRoute', "ngResource","datatables", "localytics.directives", "ui.bootstrap.datetimepicker"],  function($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');});
 

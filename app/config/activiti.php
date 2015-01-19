@@ -27,7 +27,15 @@ return  array(
             "usertask4"=>array("action"=>"D3Controller@comments"),
             "usertask2"=>array("action"=>"D3Controller@patientInput")
         ),
-
+        "D1_5" => array(
+            "usertask7"=>array("action"=>"D5Controller@patientLeave"),
+        ),
+        "D1_9" => array(
+            "usertask1"=>array("action"=>"D9Controller@patientHospitalize"),
+        ),
+        "D1_10" => array(
+            "usertask7"=>array("action"=>"D10Controller@patientLeave"),
+        ),
 
 
 
@@ -35,9 +43,12 @@ return  array(
     ),
 
     "versions" => array(
-        "D1_1" => "D1_1:1:61212",
-        "D1_2" => "D1_2:1:61217",
-        "D1_3" => "D1_3:1:48627",
+        "D1_1" => "D1_1:1:27",
+        "D1_2" => "D1_2:1:32",
+        "D1_3" => "D1_3:1:37",
+        "D1_5" => "D1_5:1:54",
+        "D1_9" => "D1_9:1:70",
+        "D1_10" => "D1_10:1:76",
     ),
 
 );

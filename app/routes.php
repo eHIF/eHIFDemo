@@ -95,3 +95,14 @@ Route::post("bpmn/runtime/{task_id}", array(
     "as"=>"process.task.complete",
     "uses"=>"BpmnController@complete",
 ));
+
+
+Route::filter('activiti', function()
+{
+    $activiti = \eHIF\ActivitiEndpoint::instance();
+    if(empty($activiti))
+        return  Redirect::to("users/login");
+});
+
+Route::when('processes/*', 'activiti');
+Route::when('bpmn/*', 'activiti');

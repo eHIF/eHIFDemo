@@ -18,7 +18,7 @@
                         <li>
 
                             <a @if(($task->assignee!=NULL)) class="bg-info" @endif href='{{URL::action("bpmn.next", array("id"=>$task->id))}}'>{{$task->process->name}}
-                                ({{$task->processInstanceId}}): {{$task->name}}   <span class="text-warning">⏯</span></a></li>
+                                ({{$task->processInstance->getVariable("amka")}}): {{$task->name}}   <span class="text-warning">⏯</span></a></li>
                     @endforeach
                 </ul>
 

@@ -54,14 +54,23 @@ class BpmnController extends BaseController {
 
     public function task($process_id, $task_key, $task_id){
 
-        $activiti = \eHIF\ActivitiEndpoint::instance();
-        $task = $activiti->tasks->get($task_id);
+        try{
+            $activiti = \eHIF\ActivitiEndpoint::instance();
+            $task = $activiti->tasks->get($task_id);
 
-        $user = $activiti->users->current();
+            $user = $activiti->users->current();
 
-        $task->assign($user);
+            $task->assign($user);
 
-        return View::make("processes.bpmn.generic")->with("form", $task->form)->with("task", $task);
+            return View::make("processes.bpmn.generic")->with("form", $task->form)->with("task", $task);
+        }
+        catch(GuzzleHttp\Exception\ServerException $ex){
+            if($ex->getCode()==404){
+                //throw $ex;
+                return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
+            }
+        }
+        return Redirect::to(URL::to("processes/list"));
     }
 
     public function complete($task_id){

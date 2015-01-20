@@ -18,6 +18,9 @@ class ActivitiEndpoint {
 
     public static function instance(){
         if(!isset(self::$activiti)){
+
+
+            if(!Auth::check()) return null;
             self::$activiti = new Activiti(
                 Config::get('activiti.endpoint'),
                 Auth::user()->activiti_username,

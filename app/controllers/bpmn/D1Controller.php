@@ -43,7 +43,7 @@ class D1Controller extends BpmnController{
                 $patient->update(Input::except(["time_examination","date_examination"]));
             }
 
-            $when  =date('Y-m-d H:i:s',strtotime(Input::get("time_examination")." ".Input::get("date_examination")));
+            $when  =date('Y-m-d H:i:s',strtotime(Input::get("date_examination")));
 
             $patient_id = $patient->id;
 
@@ -64,7 +64,7 @@ class D1Controller extends BpmnController{
             $processInstanceId = $task->processInstanceId;
             $processInstance = $activiti->processInstances->get($processInstanceId);
 
-            $variables = ["visit_id"=>$visit->id];
+            $variables = ["visit_id"=>$visit->id, "patient_id"=>$patient_id];
 
             $processInstance->setVariables($variables);
 
@@ -113,7 +113,7 @@ class D1Controller extends BpmnController{
                 $patient->update(Input::except(["time_examination","date_examination"]));
             }
 
-            $when  =date('Y-m-d H:i:s',strtotime(Input::get("time_examination")." ".Input::get("date_examination")));
+            $when  =date('Y-m-d H:i:s',strtotime(Input::get("date_examination")));
 
             $patient_id = $patient->id;
 
@@ -134,7 +134,7 @@ class D1Controller extends BpmnController{
             $processInstanceId = $task->processInstanceId;
             $processInstance = $activiti->processInstances->get($processInstanceId);
 
-            $variables = ["visit_id"=>$visit->id];
+            $variables = ["visit_id"=>$visit->id, "patient_id"=>$patient_id];
 
             $processInstance->setVariables($variables);
 

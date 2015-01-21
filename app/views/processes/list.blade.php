@@ -4,21 +4,39 @@
     Διαδικασίες
 @stop
 @section("content")
+    <div class="col-sm-4">
+        <div class="panel panel-info ">
+            <div class="panel-heading">
+                Διαθέσιμες Διαδικασίες
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    @foreach($processes as $process)
+                        <li class="list-group-item"><a href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}</a>   <span class="text-success"><i class="fa fa-caret-square-o-right"></i></span></li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <i>Κάντε κλικ για την εκκίνηση μιας διαδικασίας.</i>
+            </div>
+        </div>
 
-    <div class="col-sm-6">
+    </div>
+
+    <div class="col-sm-8">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 Ενεργές Διαδικασίες
             </div>
             <div class="panel-body">
 
-                <ul>
+                <ul class="list-group">
                     @foreach($tasks as $task)
 
-                        <li>
-
-                            <a @if(($task->assignee!=NULL)) class="bg-info" @endif href='{{URL::action("bpmn.next", array("id"=>$task->id))}}'>{{$task->process->name}}
-                                ({{$task->processInstance->getVariable("amka")}}): {{$task->name}}   <span class="text-warning">⏯</span></a></li>
+                        <li class="list-group-item">
+                            <span class=" label label-primary"><i class="fa fa-user"></i> {{$task->processInstance->getVariable("amka")}}</span>
+                            <a @if(($task->assignee!=NULL)) class="" @endif href='{{URL::action("bpmn.next", array("id"=>$task->id))}}'>  {{$task->process->name}}
+                                : {{$task->name}}   <span class="text-warning"><i class="fa fa-chevron-circle-right"></i></span></a></li>
                     @endforeach
                 </ul>
 
@@ -30,24 +48,6 @@
 
     </div>
 
-<div class="col-sm-6">
-    <div class="panel panel-info ">
-        <div class="panel-heading">
-            Διαθέσιμες Διαδικασίες
-        </div>
-        <div class="panel-body">
-            <ul>
-                @foreach($processes as $process)
-                    <li><a href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}</a>   <span class="text-success">⏩</span></li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="panel-footer">
-            <i>Κάντε κλικ για την εκκίνηση μιας διαδικασίας.</i>
-        </div>
-    </div>
-
-</div>
 
 
 @stop

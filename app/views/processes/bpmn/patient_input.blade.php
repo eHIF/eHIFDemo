@@ -92,17 +92,18 @@
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown"
                                            data-target="#" href="#">
-                                            <div class="input-group"> <input ng-model="date"
-                                                                              name="{{$field->id}}" @if($field->required)
-                                                                              required @endif  @if(!$field->writable)
-                                                                              disabled @endif value="{{$field->value}}"
-                                                                              id="{{$field->id}}"   type="text" class="form-control"
-                                                                                      ><span
+                                            <div class="input-group">
+                                                <input class="form-control" type="text" ng-value="date | date:'yyyy-MM-dd HH:mm'"  name="{{$field->id}}" @if($field->required)
+                                                       required @endif  @if(!$field->writable)
+                                                       disabled @endif value="{{$field->value}}"
+                                                       id="{{$field->id}}"   >
+                                                <span
                                                         class="input-group-addon"><i
                                                             class="glyphicon glyphicon-calendar"></i></span>
                                             </div>
                                         </a>
                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
                                             <datetimepicker data-ng-model="date"
                                                             data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
                                         </ul>
@@ -148,11 +149,25 @@
                                            required @endif value="{{$field->value}}" id="{{$field->id}}" type="text"
                                            class="form-control"/>
                                 @elseif($field->type == "date")
-                                    <input ng-model="selection.{{$field->id}}"
-                                           name="{{$field->id}}" @if($field->required)
-                                           required @endif  @if(!$field->writable)
-                                           disabled @endif value="{{$field->value}}" id="{{$field->id}}"   type="text"
-                                           class="datepicker form-control">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown"
+                                           data-target="#" href="#">
+                                            <div class="input-group">
+                                                <input class="form-control" type="text" ng-value="date | date:'yyyy-MM-dd HH:mm'"  name="{{$field->id}}" @if($field->required)
+                                                       required @endif  @if(!$field->writable)
+                                                       disabled @endif value="{{$field->value}}"
+                                                       id="{{$field->id}}"   >
+                                                <span
+                                                        class="input-group-addon"><i
+                                                            class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+                                            <datetimepicker data-ng-model="date"
+                                                            data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+                                        </ul>
+                                    </div>
                                 @endif
 
                             </div>

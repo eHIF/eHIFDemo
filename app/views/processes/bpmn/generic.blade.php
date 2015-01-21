@@ -15,6 +15,10 @@
     </script>
 @stop
 
+@section("context")
+@include("processes.bpmn.context")
+@stop
+
 @section("content")
 
     <link rel="stylesheet" href="{{URL::asset('bower_resources/bootstrap-datepicker/css/datepicker.css')}}"/>
@@ -54,3 +58,5 @@
 
 
 @stop
+
+

@@ -30,6 +30,9 @@ return  array(
         "D1_5" => array(
             "usertask7"=>array("action"=>"D5Controller@patientLeave"),
         ),
+        "D1_4" => array(
+            "usertask8"=>array("action"=>"D4Controller@decide"),
+        ),
         "D1_9" => array(
             "usertask1"=>array("action"=>"D9Controller@patientHospitalize"),
         ),
@@ -43,12 +46,13 @@ return  array(
     ),
 
     "versions" => array(
-        "D1_1" => "D1_1:1:27",
-        "D1_2" => "D1_2:1:32",
-        "D1_3" => "D1_3:1:37",
-        "D1_5" => "D1_5:1:47",
-        "D1_9" => "D1_9:1:70",
-        "D1_10" => "D1_10:1:76",
+        "D1_1" => "D1_1:1:107",
+        "D1_2" => "D1_2:1:112",
+        "D1_3" => "D1_3:1:116",
+        "D1_4" => "D1_4:1:120",
+        "D1_5" => "D1_5:1:124",
+        "D1_9" => "D1_9:1:140",
+        "D1_10" => "D1_10:1:144",
     ),
 
 );

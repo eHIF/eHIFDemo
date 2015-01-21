@@ -31,7 +31,7 @@
     <tr>
         <td> <div><a href=" {{URL::to("patients/" .$visit->patient->id)}}">{{$visit->patient->onomatepwnimo}}</a></div></td>
         <td> <div>{{$visit->patient->amka}}</div></td>
-        <td> <div>{{$visit->patient->created_at}}</div></td>
+        <td> <div>{{$visit->when}}</div></td>
         <td> <div><a class="btn btn-success" href="{{URL::route('sessions.create',array("visit"=>$visit->id))}}">Έναρξη εξέτασης</a></div></td>
     </tr>
 

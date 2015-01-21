@@ -62,13 +62,24 @@ class BpmnController extends BaseController {
 
             $task->assign($user);
 
-            return View::make("processes.bpmn.generic")->with("form", $task->form)->with("task", $task);
+            $variables = $task->getprocessInstance()->getVariables();
+
+            if(isset($variables["patient_id"])){
+                $patient = Patient::find($variables["patient_id"]);
+
+            }
+            else $patient = null;
+
+            return View::make("processes.bpmn.generic")->with("form", $task->form)->with("task", $task)->with("variables", $variables)->with("patient", $patient);
         }
         catch(GuzzleHttp\Exception\ServerException $ex){
             if($ex->getCode()==404){
                 //throw $ex;
                 return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
             }
+        }
+        catch(\GuzzleHttp\Exception\ClientException $ex){
+            return Redirect::to(URL::to("processes/list"));
         }
         return Redirect::to(URL::to("processes/list"));
     }

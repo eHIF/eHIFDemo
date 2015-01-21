@@ -109,7 +109,15 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
                             <h2>@yield('pagetitle')</h2>
                         </div>
                         <hr/>
-                        @yield('content')
+                        <div @if (array_key_exists('context', View::getSections()))class="col-md-9"@else class="col-md-12" @endif>
+                            @yield('content')
+                        </div>
+                        @if (array_key_exists('context', View::getSections()))
+                            <div class="col-md-3">
+                                @yield('context')
+                            </div>
+                        @endif
+
 
                     </div>
                 </div>

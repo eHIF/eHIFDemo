@@ -109,7 +109,15 @@ font-size: 16px;"><i><?php echo Auth::user()->roles()->first()->friendly; ?></i>
                             <h2><?php echo $__env->yieldContent('pagetitle'); ?></h2>
                         </div>
                         <hr/>
-                        <?php echo $__env->yieldContent('content'); ?>
+                        <div <?php if(array_key_exists('context', View::getSections())): ?>class="col-md-9"<?php else: ?> class="col-md-12" <?php endif; ?>>
+                            <?php echo $__env->yieldContent('content'); ?>
+                        </div>
+                        <?php if(array_key_exists('context', View::getSections())): ?>
+                            <div class="col-md-3">
+                                <?php echo $__env->yieldContent('context'); ?>
+                            </div>
+                        <?php endif; ?>
+
 
                     </div>
                 </div>

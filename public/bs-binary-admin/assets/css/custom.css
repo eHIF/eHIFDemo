@@ -403,3 +403,9 @@ line-height: 1.428571429;
 #main-menu li .pull-right{
     margin: 15px 10px;
 }
+
+
+.process-name{
+    border-bottom: dotted 1px;
+    cursor:help
+}

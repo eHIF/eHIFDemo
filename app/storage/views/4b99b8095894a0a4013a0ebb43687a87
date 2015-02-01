@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <?php echo $__env->yieldContent("meta"); ?>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ηλεκτρονικός Φάκελος - Κέντρο Υγείας Κισσάμου</title>
@@ -92,6 +93,10 @@ font-size: 16px;"><i><?php echo Auth::user()->roles()->first()->friendly; ?></i>
                     <li>
                         <a href="blank.html"><i class="fa fa-bar-chart-o fa-3x"></i> Αναφορές </a>
                     </li>
+                    <li>
+                        <a class="<?php echo Request::is( 'ehif*') ? 'active-menu' : ''; ?>"
+                           href="<?php echo URL::to('ehif'); ?>"><i class="fa fa-share fa-3x"></i> eHIF</a>
+                    </li>
                 </ul>
 
             </div>
@@ -122,7 +127,19 @@ font-size: 16px;"><i><?php echo Auth::user()->roles()->first()->friendly; ?></i>
                     </div>
                 </div>
                 <!-- /. ROW  -->
+                <hr/>
+                <footer class="row footer">
+                    <div class="">
+                        <div style=" background:rgba(52, 70, 79, 0.88)">
+                            <div class="col-sm-2"><img  style="margin-top: 50px; display: block; margin: 0 auto;  max-width: 80px" src="<?php echo URL::asset('bs-binary-admin/assets/img/ehif.png'); ?>" alt=""/></div>
+                            <div class="text-muted col-sm-10">   <div>Πιλοτική εφαρμογή του προγράμματος <a target="_blank" href="http://medlab.cc.uoi.gr/ehif">eHIF</a> (e-Health Interoperability Framework) - Δικτύωση Μονάδων Πρωτοβάθμιας Φροντίδας. Με τη συγχρηματοδότηση... </div></div>
 
+
+                        </div>
+
+
+                    </div>
+                </footer>
 
             </div>
             <!-- /. PAGE INNER  -->

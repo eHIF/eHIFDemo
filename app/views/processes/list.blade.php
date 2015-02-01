@@ -1,5 +1,10 @@
 @extends("layouts.default")
 
+@section("meta")
+    <meta http-equiv="refresh" content="10" >
+
+@stop
+
 @section("pagetitle")
     Διαδικασίες
 @stop
@@ -12,7 +17,9 @@
             <div class="panel-body">
                 <ul class="list-group">
                     @foreach($processes as $process)
-                        <li class="list-group-item"><a href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}</a>   <span class="text-success"><i class="fa fa-caret-square-o-right"></i></span></li>
+                        <li class="list-group-item"><a target="_blank"
+                                    href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}</a>
+                            <span class="text-success"><i class="fa fa-caret-square-o-right"></i></span></li>
                     @endforeach
                 </ul>
             </div>
@@ -34,9 +41,12 @@
                     @foreach($tasks as $task)
 
                         <li class="list-group-item">
-                            <span class=" label label-primary"><i class="fa fa-user"></i> {{$task->processInstance->getVariable("amka")}}</span>
-                            <a @if(($task->assignee!=NULL)) class="" @endif href='{{URL::action("bpmn.next", array("id"=>$task->id))}}'>  {{$task->process->name}}
-                                : {{$task->name}}   <span class="text-warning"><i class="fa fa-chevron-circle-right"></i></span></a></li>
+                            <span class=" label label-primary"><i
+                                        class="fa fa-user"></i> {{$task->processInstance->getVariable("amka")}}</span>
+                            <span class="process-name" title="{{$task->process->description}}">{{$task->process->name}}</span>
+                            :<a target="_blank" @if(($task->assignee!=NULL)) class=""
+                                                            @endif href='{{URL::action("bpmn.next", array("id"=>$task->id))}}'>   {{$task->name}}   <span class="text-warning"><i
+                                            class="fa fa-chevron-circle-right"></i></span></a></li>
                     @endforeach
                 </ul>
 

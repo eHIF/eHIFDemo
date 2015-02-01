@@ -44,6 +44,7 @@ Route::resource('patients', 'PatientsController');
 Route::get("visits/create/{patient_id?}", "VisitsController@create");
 Route::get("visits", "VisitsController@index");
 Route::post("visits/store/{patient_id?}", array("as"=>"visits.store", "uses"=>"VisitsController@store"));
+Route::get("api/visits/index", "VisitsController@api_index");
 
 Route::resource('sessions', 'SessionsController');
 

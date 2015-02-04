@@ -1,8 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: larjohns
- * Date: 1/2/2015
- * Time: 7:47 μμ
+@extends("layouts.default")
 
- */
+@section("pagetitle")
+eHIF
+@stop
+@section("content")
+
+
+@endsection

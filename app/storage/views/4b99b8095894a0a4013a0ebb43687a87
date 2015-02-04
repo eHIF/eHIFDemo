@@ -55,16 +55,16 @@ font-size: 16px;"><i><?php echo Auth::user()->roles()->first()->friendly; ?></i>
 
                     <li>
                         <a class="<?php echo Request::is( 'processes*') ? 'active-menu' : ''; ?>"
-                           href="<?php echo URL::to('processes/list'); ?>"><i class="fa fa-tasks fa-3x"></i> Διαδικασίες <span
+                           href="<?php echo URL::to('processes/list'); ?>"><i class="fa fa-tasks fa-3x"></i> Διαδικασίες eHIF<span
                                     class="pull-right label label-danger"><?php echo $__env->make('layouts/active_processes', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?></span></a>
                     </li>
                     <li>
                         <a class="<?php echo Request::is( 'visits*') ? 'active-menu' : ''; ?>" href="<?php echo URL::to('visits'); ?>"><i
-                                    class="fa fa-book fa-3x"></i>Επισκέψεις</a>
+                                    class="fa fa-book fa-3x"></i>Επισκέψεις στο Κ.Υ.</a>
                     </li>
                     <li>
                         <a class="<?php echo Request::is( 'sessions*') ? 'active-menu' : ''; ?>"
-                           href="<?php echo URL::to("sessions"); ?>"><i class="fa fa-stethoscope fa-3x"></i> Συνεδρίες</a>
+                           href="<?php echo URL::to("sessions"); ?>"><i class="fa fa-stethoscope fa-3x"></i> Συνεδρίες με τον Ιατρό</a>
                     </li>
                     <li>
                         <a class="<?php echo Request::is( 'patients*') ? 'active-menu' : ''; ?>"

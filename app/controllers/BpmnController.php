@@ -151,6 +151,11 @@ class BpmnController extends BaseController {
                 return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
             }
         }
+        catch(\GuzzleHttp\Exception\ServerException $ex){
+            echo($ex->getRequest()->getBody());
+            echo($ex->getResponse()->getBody());
+            die;
+        }
 
         return Redirect::to(URL::to("processes/list"));
 

@@ -1,50 +1,88 @@
 @extends('layouts.default')
 
 @section("pagetitle")
-Όλες οι συνεδρίες
+    Συνεδρίες με τον Ιατρό
 @endsection
 
+@section("scripts")
+    <script>
+        $(document).ready(function () {
+            $('#sessions').dataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{URL::to('api/sessions/index')}}",
+                "order": [[1, "desc"]],
+                "columns": [
+                    {data: "id"},
+                    {data: "created_at"},
+                    {data: "patient.onomatepwnimo"},
+                    {data: "doctor"},
+                    {
+                        render: function (data, type, full, meta) {
+
+                            var div = document.createElement("div");
+                            $(div).addClass("btn-group");
+
+                            if (full.visit.visit_status.name == "pending" || full.visit.visit_status.name == "session") {
+                                var form = document.createElement("form");
+                                var closeButton = document.createElement("button");
+                                $(form).attr("method", "post").attr("action", baseURL + "/sessions/" + full.id + "/close");
+
+                                $(closeButton).attr("type", "submit").addClass("btn btn-danger");
+                                $(closeButton).text("Κλείσιμο");
+                                $(form).append(closeButton);
+
+                                $(div).append(form);
+                            }
+
+                            if (full.visit.visit_status.name == "session") {
+
+                                form = document.createElement("form");
+                                var doctorButton = document.createElement("button");
+                                $(form).attr("method", "get").attr("action", baseURL + "/sessions/" + full.id + "/edit");
+
+                                $(doctorButton).attr("type", "submit").addClass("btn btn-warning");
+                                $(doctorButton).text("Προβολή");
+                                $(form).append(doctorButton);
+
+                                $(div).append(form);
+
+                            }
+
+                            return div.outerHTML;
+
+
+                        }
+                    }
+                ],
+                language: {url: "https://cdn.datatables.net/plug-ins/a5734b29083/i18n/Greek.json"}
+            });
+        });
+    </script>
+@stop
 
 @section('content')
 
 
-
-
-@if ($sessions->count())
-	<table class="table table-striped">
-		<thead>
-			<tr>
+    @if ($sessions->count())
+        <table id="sessions" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Α/Α</th>
                 <th>Ημερομηνία και ώρα</th>
-				<th>Ασθενής</th>
-				<th>Θεράπων Ιατρός</th>
+                <th>Ασθενής</th>
+                <th>Θεράπων Ιατρός</th>
 
-				<th>&nbsp;</th>
-			</tr>
-		</thead>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
 
-		<tbody>
-			@foreach ($sessions as $Session)
-				<tr>
-					<td>{{{ $Session->created_at }}}</td>
-                    <td>{{{ $Session->patient->name }}} {{{ $Session->patient->surname }}}</td>
-                    <td>{{{ $Session->doctor->name }}} </td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'POST', 'route' => array('sessions.close', $Session->id))) }}
-                        {{ Form::submit('Κλείσιμο', array('class' => 'btn btn-warning')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('sessions.edit', 'Επεξεργασία', array($Session->id), array('class' => 'btn btn-info')) }}
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('sessions.destroy', $Session->id))) }}
-                            {{ Form::submit('Διαγραφή', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
+            <tbody>
 
-
-                    </td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
-@else
-	There are no sessions
-@endif
+            </tbody>
+        </table>
+    @else
+        There are no sessions
+    @endif
 
 @stop

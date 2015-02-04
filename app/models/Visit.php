@@ -33,4 +33,23 @@ class Visit extends Eloquent{
     }
 
 
+    public function close(){
+        $this->visit_status()->associate(VisitStatus::where("name","complete" )->first());
+        $this->save();
+    }
+
+    public function startSession(){
+
+        $medicalSession = MedicalSession::create([]);
+
+        $medicalSession->visit()->associate($this);
+        $this->visit_status()->associate(VisitStatus::where("name","session" )->first());
+
+        $medicalSession->save();
+        $this->save();
+
+
+    }
+
+
 } 

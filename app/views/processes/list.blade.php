@@ -15,7 +15,9 @@
                 Διαθέσιμες Διαδικασίες
             </div>
             <div class="panel-body">
+                @if(count($processes)<1)<span>Δεν υπάρχουν διαθέσιμες διαδικασίες, εκκινήσιμες από εσάς</span>@endif
                 <ul class="list-group">
+
                     @foreach($processes as $process)
                         <li class="list-group-item"><a target="_blank"
                                     href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}</a>
@@ -36,8 +38,9 @@
                 Ενεργές Διαδικασίες
             </div>
             <div class="panel-body">
-
+                @if(count($tasks)<1)<span>Δεν υπάρχουν εν εξελίξει διαδικασίες στις οποίες μπορείτε να συμμετέχετε.</span>@endif
                 <ul class="list-group">
+
                     @foreach($tasks as $task)
 
                         <li class="list-group-item">

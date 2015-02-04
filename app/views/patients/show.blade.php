@@ -22,12 +22,29 @@
 <div class="col-sm-12">
 	<div class="col-sm-3">Photo</div>
 	<div class="col-sm-6">
-		<h3>{{{$patient->onomatepwnymo}}} του {{{$patient->patronimo}}} </h3>
+		<h3>{{{$patient->onomatepwnimo}}} του {{{$patient->patronimo}}} </h3>
 		<h5>{{{$patient->etosgennisis}}}  ({{DateTime::createFromFormat('Y-m-d', $patient->etosgennisis,  new DateTimeZone('Europe/Athens'))
 			->diff(new DateTime('now',  new DateTimeZone('Europe/Athens')))
 			->y;}} ετών)</h5>
 		<h5>ΑΜΚΑ: {{{$patient->amka}}}</h5>
 	</div>
+</div>
+
+<div class="col-sm-12">
+    <h3>Ιστορικό Συνεδριών</h3>
+    <ul>
+
+        @foreach($patient->sessions as $session)
+            <li>
+                <span><a href="{{URL::to("sessions/".$session->id)}}">{{$session->created_at}}</a> </span> <strong>(Συνεδρία με: {{$session->doctor->name}})</strong>
+                <ul>
+                    @foreach($session->diseases as $disease)
+                        <li>{{$disease->title}}</li> @endforeach
+                </ul></li>
+
+        @endforeach
+    </ul>
+
 </div>
 
 

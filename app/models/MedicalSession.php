@@ -21,6 +21,8 @@ class MedicalSession extends Eloquent {
 
     public function close(){
         $this->closed=true;
+        $this->visit->visit_status()->associate(VisitStatus::where("name","complete")->first());
+        $this->visit->save();
         $this->save();
     }
 

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section("pagetitle")
-Όλες οι συνεδρίες
+Προσωπικό
 @endsection
 
 

@@ -1,1 +1,1 @@
-{{count(\eHIF\ActivitiEndpoint::tasks())}}
+@if(isset($no_processes) && !$no_processes){{count(\eHIF\ActivitiEndpoint::tasks())}}@endif

@@ -35,7 +35,7 @@
                 <div class="col-lg-6">
                     <div class="input-group">
                         <input class="form-control" ng-model="searchTerm" type="text" id="search" name="search"
-                               placeholder="Επίθετο ή ΑΜΚΑ"/>
+                               placeholder="Ονοματεπώνυμο ή ΑΜΚΑ"/>
                           <span class="input-group-btn">
                             <button ng-click="search()" class="btn btn-default" type="submit">Αναζήτηση</button>
                           </span>
@@ -83,6 +83,9 @@
                                     </select>
                                 @elseif($field->type== "string" || $field->type ==NULL)
                                     <input ng-model="selection.{{$field->id}}"
+                                    @if($field->id=="amka")
+                                           pattern="[0-9]{11}"
+                                           @endif
                                            name="{{$field->id}}" @if(!$field->writable)
                                            disabled @endif @if($field->required)
                                            required @endif value="{{$field->value}}" id="{{$field->id}}" type="text"
@@ -94,7 +97,11 @@
                                            data-target="#" href="#">
                                             <div class="input-group">
                                                 <input class="form-control" type="text" ng-value="date | date:'yyyy-MM-dd HH:mm'"  name="{{$field->id}}" @if($field->required)
-                                                       required @endif  @if(!$field->writable)
+
+                                                       required @endif
+
+
+                                                @if(!$field->writable)
                                                        disabled @endif value="{{$field->value}}"
                                                        id="{{$field->id}}"   >
                                                 <span
@@ -144,6 +151,12 @@
                                     </select>
                                 @elseif($field->type== "string" || $field->type ==NULL)
                                     <input ng-model="selection.{{$field->id}}"
+
+                                           @if($field->id=="amka")
+                                           pattern="[0-9]{11}"
+                                           @endif
+
+
                                            name="{{$field->id}}" @if(!$field->writable)
                                            disabled @endif @if($field->required)
                                            required @endif value="{{$field->value}}" id="{{$field->id}}" type="text"

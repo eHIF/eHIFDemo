@@ -45,16 +45,18 @@ Route::get("visits/create/{patient_id?}", "VisitsController@create");
 Route::get("visits", "VisitsController@index");
 Route::post("visits/store/{patient_id?}", array("as"=>"visits.store", "uses"=>"VisitsController@store"));
 Route::get("api/visits/index", "VisitsController@api_index");
+Route::post("visits/{visit_id}/close", "VisitsController@close");
+Route::post("visits/{visit_id}/session", "VisitsController@startSession");
 
 Route::resource('sessions', 'SessionsController');
-
+Route::get("api/sessions/index", "SessionsController@api_index");
 
 Route::get('api/sessions/referrals', 'ReferralsController@api_index');
 Route::post('api/sessions/referrals', 'ReferralsController@api_store');
 Route::delete('api/sessions/referrals', 'ReferralsController@api_delete');
 Route::get('api/sessions/referrals/types', 'ReferralTypesController@api_index');
 
-Route::post('sessions/close',array("as"=>"sessions.close", "uses"=>"SessionsController@close"));
+Route::post('sessions/{visit_id}/close',array("as"=>"sessions.close", "uses"=>"SessionsController@close"));
 
 
 Route::resource('appointments', 'AppointmentsController');
@@ -65,6 +67,11 @@ Route::get('processes/list',"ProcessesController@enlist");
 Route::get("bpmn/start", array("as"=>'bpmn.start', "uses"=>"BpmnController@start"));
 Route::get("bpmn/next", array("as"=>'bpmn.next', "uses"=>"BpmnController@next"));
 
+
+Route::get("ehif", function()
+{
+    return View::make('ehif');
+});
 
 
 $mappings = Config::get('activiti.mappings');

@@ -55,16 +55,16 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
 
                     <li>
                         <a class="{{ Request::is( 'processes*') ? 'active-menu' : '' }}"
-                           href="{{URL::to('processes/list')}}"><i class="fa fa-tasks fa-3x"></i> Διαδικασίες <span
+                           href="{{URL::to('processes/list')}}"><i class="fa fa-tasks fa-3x"></i> Διαδικασίες eHIF<span
                                     class="pull-right label label-danger">@include('layouts/active_processes')</span></a>
                     </li>
                     <li>
                         <a class="{{ Request::is( 'visits*') ? 'active-menu' : '' }}" href="{{URL::to('visits')}}"><i
-                                    class="fa fa-book fa-3x"></i>Επισκέψεις</a>
+                                    class="fa fa-book fa-3x"></i>Επισκέψεις στο Κ.Υ.</a>
                     </li>
                     <li>
                         <a class="{{ Request::is( 'sessions*') ? 'active-menu' : '' }}"
-                           href="{{URL::to("sessions")}}"><i class="fa fa-stethoscope fa-3x"></i> Συνεδρίες</a>
+                           href="{{URL::to("sessions")}}"><i class="fa fa-stethoscope fa-3x"></i> Συνεδρίες με τον Ιατρό</a>
                     </li>
                     <li>
                         <a class="{{ Request::is( 'patients*') ? 'active-menu' : '' }}"

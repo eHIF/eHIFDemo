@@ -128,6 +128,78 @@ class SessionsController extends BaseController {
 			->with('message', 'There were validation errors.');
 	}
 
+
+    public function api_index()
+    {
+
+        // dd(Input::all());
+        $query = MedicalSession
+            ::with("patient")
+            ->with("visit")
+            ->with("visit.visit_status")
+            ->join("patients", "medical_sessions.patient_id","=","patients.id")
+            ->join("users", "medical_sessions.doctor_id","=","users.id")
+            ->join("visits", "medical_sessions.visit_id","=","visits.id")
+            ->join("visit_statuses", "visits.visit_status_id","=","visit_statuses.id")
+
+            ->select(["medical_sessions.*","users.name as doctor"]);
+
+        $count = $query->count();
+
+
+        $search = Input::get("search")["value"];
+
+        $searchQuery =$query->where("patients.amka", "LIKE", "%$search%")
+            ->orWhere("patients.onomatepwnimo", "LIKE", "%$search%");
+
+
+
+        $s_count = $searchQuery->count();
+
+        $columns = Input::get("columns");
+        foreach (Input::get("order",[]) as $order) {
+            $column  = $columns[$order["column"]]["data"];
+
+            $col_parts = explode(".",$column);
+
+            if(count($col_parts)>1){
+                for($i=0;$i<count($col_parts)-1;$i++){
+                    $tableName = str_plural($col_parts[$i]);
+                    $col_parts[$i] = $tableName;
+                }
+
+
+            }
+
+            $column = implode(".", array_slice($col_parts,-2,2));
+
+
+
+
+            $searchQuery->orderBy($column, $order["dir"]);
+
+
+        }
+
+
+        $sessions = $searchQuery
+            ->offset(Input::get("start", 0))
+            ->limit(Input::get("length", 10))
+            ->get();
+
+
+        //  dd(Input::all());
+
+        return [
+            "data" => $sessions,
+            "recordsTotal" => $count,
+            "recordsFiltered" => $s_count,
+            "draw" => Input::get("draw"),
+
+
+        ];
+    }
+
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -141,12 +213,13 @@ class SessionsController extends BaseController {
 		return Redirect::route('sessions.index');
 	}
 
-    public function close(){
-        $id = Input::get("id");
+    public function close($id){
+
 
         $session = MedicalSession::find($id);
+
         $session->close();
-        return Redirect::route('sessions.show', $id);
+        return Redirect::route('sessions.index');
 
     }
 

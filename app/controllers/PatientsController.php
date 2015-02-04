@@ -105,6 +105,7 @@ class PatientsController extends BaseController {
 	 */
 	public function update($id)
 	{
+
 		$input = array_except(Input::all(), '_method');
 		$validation = Validator::make($input, Patient::$rules);
 
@@ -143,6 +144,7 @@ class PatientsController extends BaseController {
     public function api_update(){
         $patient = Patient::find(Input::get("id"));
         $patient->update(Input::except("id"));
+
     }
 
     public function api_create(){
@@ -154,17 +156,63 @@ class PatientsController extends BaseController {
     }
 
 	public function api_index(){
-		$patients = Patient::limit(Input::get('length'))->offset(Input::get('start'))->get();
-		$total = Patient::count();
-		return
-			array(
-				"data"=>$patients,
-				"recordsTotal"=>$total,
-				"recordsFiltered"=>$total,
-				"draw"=>Input::get("draw")
+
+        // dd(Input::all());
+        $query = Patient
+            ::select("patients.*");
+
+        $count = $query->count();
+
+
+        $search = Input::get("search")["value"];
+
+        $searchQuery =$query->where("patients.amka", "LIKE", "%$search%")
+            ->orWhere("patients.onomatepwnimo", "LIKE", "%$search%");
+
+
+        $s_count = $searchQuery->count();
+
+        $columns = Input::get("columns");
+        foreach (Input::get("order",[]) as $order) {
+            $column  = $columns[$order["column"]]["data"];
+
+            $col_parts = explode(".",$column);
+
+            if(count($col_parts)>1){
+                for($i=0;$i<count($col_parts)-1;$i++){
+                    $tableName = str_plural($col_parts[$i]);
+                    $col_parts[$i] = $tableName;
+                }
+
+
+            }
+
+            $column = implode(".", array_slice($col_parts,-2,2));
 
 
 
-		);
+
+            $searchQuery->orderBy($column, $order["dir"]);
+
+
+        }
+
+
+        $patients = $searchQuery
+            ->offset(Input::get("start", 0))
+            ->limit(Input::get("length", 10))
+            ->get();
+
+
+        //  dd(Input::all());
+
+        return [
+            "data" => $patients,
+            "recordsTotal" => $count,
+            "recordsFiltered" => $s_count,
+            "draw" => Input::get("draw"),
+
+
+        ];
 	}
 }

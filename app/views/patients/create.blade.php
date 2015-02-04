@@ -32,18 +32,13 @@
 <fieldset class="col-xs-6">
 
 <div class="form-group">
-    {{ Form::label('name', 'Όνομα:', array('class'=>'col-md-2 control-label')) }}
+    {{ Form::label('name', 'Ονοματεπώνυμο:', array('class'=>'col-md-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('name', Input::old('name'), array('class'=>'form-control', 'placeholder'=>'Όνομα')) }}
+        {{ Form::text('onomatepwnimo', Input::old('onomatepwnimo'), array('class'=>'form-control', 'placeholder'=>'Ονοματεπώνυμο')) }}
     </div>
 </div>
 
-<div class="form-group">
-    {{ Form::label('surname', 'Επώνυμο:', array('class'=>'col-md-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::text('surname', Input::old('surname'), array('class'=>'form-control', 'placeholder'=>'Επώνυμο')) }}
-    </div>
-</div>
+
 
 <div class="form-group">
     {{ Form::label('amka', 'ΑΜΚΑ:', array('class'=>'col-md-2 control-label')) }}
@@ -53,23 +48,17 @@
 </div>
 
 <div class="form-group">
-    {{ Form::label('fathername', 'Όνομα πατρός:', array('class'=>'col-md-2 control-label')) }}
+    {{ Form::label('patronimo', 'Όνομα πατρός:', array('class'=>'col-md-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('fathername', Input::old('fathername'), array('class'=>'form-control', 'placeholder'=>'Όνομα πατρός')) }}
+        {{ Form::text('patronimo', Input::old('patronimo'), array('class'=>'form-control', 'placeholder'=>'Όνομα πατρός')) }}
     </div>
 </div>
 
-<div class="form-group">
-    {{ Form::label('mothername', 'Όνομα μητρός:', array('class'=>'col-md-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::text('mothername', Input::old('mothername'), array('class'=>'form-control', 'placeholder'=>'Όνομα μητρός')) }}
-    </div>
-</div>
 
 <div class="form-group">
-    {{ Form::label('address', 'Διεύθυνση οικίας:', array('class'=>'col-md-2 control-label')) }}
+    {{ Form::label('town', 'Διεύθυνση οικίας:', array('class'=>'col-md-2 control-label')) }}
     <div class="col-sm-10">
-        {{ Form::text('address', Input::old('address'), array('class'=>'form-control', 'placeholder'=>'Διεύθυνση οικίας')) }}
+        {{ Form::text('town', Input::old('town'), array('class'=>'form-control', 'placeholder'=>'Διεύθυνση οικίας')) }}
     </div>
 </div>
 </fieldset>
@@ -83,10 +72,10 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('birthday', 'Ημερομηνία Γέννησης:', array('class'=>'col-md-2 control-label')) }}
+        {{ Form::label('etosgennisis', 'Ημερομηνία Γέννησης:', array('class'=>'col-md-2 control-label')) }}
         <div class="col-sm-10">
             <div class='input-group date datetimepicker'>
-                <input data-date-format="YYYY-MM-DD" type='text' id="birthday" name="birthday" class="form-control" />
+                <input data-date-format="YYYY-MM-DD" type='text' id="etosgennisis" name="etosgennisis" class="form-control" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
             </div>
@@ -100,12 +89,6 @@
     </div>
 </div>
 
-<div class="form-group">
-    {{ Form::label('area', 'Περιοχή:', array('class'=>'col-md-2 control-label')) }}
-    <div class="col-sm-10">
-        {{ Form::text('area', Input::old('area'), array('class'=>'form-control', 'placeholder'=>'Περιοχή')) }}
-    </div>
-</div>
 
 <div class="form-group">
     {{ Form::label('phone', 'Τηλέφωνο οικίας:', array('class'=>'col-md-2 control-label')) }}

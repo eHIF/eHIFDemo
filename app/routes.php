@@ -63,6 +63,7 @@ Route::resource('appointments', 'AppointmentsController');
 
 
 Route::get('processes/list',"ProcessesController@enlist");
+Route::post('processes/delete/{processInstanceId}',"BpmnController@deleteProcessInstance");
 
 Route::get("bpmn/start", array("as"=>'bpmn.start', "uses"=>"BpmnController@start"));
 Route::get("bpmn/next", array("as"=>'bpmn.next', "uses"=>"BpmnController@next"));

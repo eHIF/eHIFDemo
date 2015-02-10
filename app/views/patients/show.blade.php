@@ -20,13 +20,15 @@
 @section('content')
 
 <div class="col-sm-12">
-	<div class="col-sm-3">Photo</div>
+
 	<div class="col-sm-6">
 		<h3>{{{$patient->onomatepwnimo}}} του {{{$patient->patronimo}}} </h3>
 		<h5>{{{$patient->etosgennisis}}}  ({{DateTime::createFromFormat('Y-m-d', $patient->etosgennisis,  new DateTimeZone('Europe/Athens'))
 			->diff(new DateTime('now',  new DateTimeZone('Europe/Athens')))
 			->y;}} ετών)</h5>
 		<h5>ΑΜΚΑ: {{{$patient->amka}}}</h5>
+		<h5>Διεύθυνση: {{{$patient->town}}}</h5>
+		<h5>Τηλέφωνο: {{{$patient->phone}}}</h5>
 	</div>
 </div>
 

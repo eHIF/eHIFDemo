@@ -160,4 +160,23 @@ class BpmnController extends BaseController {
         return Redirect::to(URL::to("processes/list"));
 
     }
+
+
+    public function deleteProcessInstance($processInstanceId){
+        try{
+            $activiti = \eHIF\ActivitiEndpoint::instance();
+
+            $processInstance = $activiti->processInstances->get($processInstanceId);
+
+            dd($processInstance->deleteProcessInstance());
+
+
+          //  return View::make("processes.list");
+        }
+        catch( \GuzzleHttp\Exception\ClientException $ex ){
+
+            return View::make("processes.no-processes")->with("no_processes", true);
+        }
+    }
+
 }

@@ -11,7 +11,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": "{{URL::to('api/visits/index')}}",
-                "order": [[ 4, "desc" ],[ 3, "desc" ]],
+                "order": [[ 3, "desc" ],[ 4, "desc" ]],
                 "columns": [
                     {data: "id"},
                     {data: "patient.onomatepwnimo"},

@@ -1,7 +1,23 @@
 @extends("layouts.default")
 
+@section('breadcrumb')
+    <ol class="breadcrumb">
+        <li><a href="{{URL::to('/')}}">Κέντρο Υγείας</a></li>
+        <li class="active">Διαδικασίες</li>
+        <li class="active">{{$task->process->name}}</li>
+        @foreach($task->history as $history)
+            <li>{{$history->name}}</li>
+        @endforeach
+    </ol>
+@stop
 @section("pagetitle")
     {{$task->name}}
+    <div class="pull-right">
+        <form action="{{URL::to('processes/delete/'.$task->processInstance->id)}}" method="post">
+            <button href="http://localhost/eHIFDemo/public/patients/create" class="btn  btn-danger">Ακύρωση</button>
+        </form>
+        
+    </div>
 @stop
 
 @section("scripts")

@@ -3,7 +3,16 @@
 @section("pagetitle")
     {{$task->name}}
 @stop
-
+@section('breadcrumb')
+    <ol class="breadcrumb">
+        <li><a href="{{URL::to('/')}}">Κέντρο Υγείας</a></li>
+        <li class="active">Διαδικασίες</li>
+        <li class="active">{{$task->process->name}}</li>
+        @foreach($task->history as $history)
+            <li>{{$history->name}}</li>
+        @endforeach
+    </ol>
+@stop
 @section("scripts")
     <script src="{{URL::asset('bower_resources/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
     <script>

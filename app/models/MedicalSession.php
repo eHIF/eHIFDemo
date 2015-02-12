@@ -3,6 +3,8 @@
 class MedicalSession extends Eloquent {
 	protected $guarded = array();
 
+    public $fillable = ["diagnosis"];
+
 	public static $rules = array(
 
 	);

@@ -40,3 +40,17 @@ app.service('ReferralsTypesService', function($resource) {
         get: {method: 'GET', params: {}, isArray:true}
     });
 });
+
+app.service('PrescriptionsService', function($resource) {
+    return $resource(baseURL + "/api/sessions/prescriptions", {}, {
+        get: {method: 'GET', params: {}, isArray:true},
+        add: {method: 'POST', params: {}, isArray:true},
+        remove: {method: 'DELETE', params: {}, isArray:true}
+    });
+});
+
+app.service('PrescriptionsTypesService', function($resource) {
+    return $resource(baseURL + "/api/sessions/prescriptions/types", {}, {
+        get: {method: 'GET', params: {}, isArray:true}
+    });
+});

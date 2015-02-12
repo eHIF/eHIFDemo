@@ -114,11 +114,13 @@ class SessionsController extends BaseController {
 		$input = array_except(Input::all(), '_method');
 		$validation = Validator::make($input, MedicalSession::$rules);
 
+
+
 		if ($validation->passes())
 		{
 			$session = $this->session->find($id);
 			$session->update($input);
-
+            dd($session);
 			return Redirect::route('sessions.show', $id);
 		}
 

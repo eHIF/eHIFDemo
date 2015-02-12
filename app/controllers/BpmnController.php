@@ -168,10 +168,10 @@ class BpmnController extends BaseController {
 
             $processInstance = $activiti->processInstances->get($processInstanceId);
 
-            dd($processInstance->deleteProcessInstance());
+            $processInstance->deleteProcessInstance();
 
 
-          //  return View::make("processes.list");
+            return View::make("processes.list");
         }
         catch( \GuzzleHttp\Exception\ClientException $ex ){
 

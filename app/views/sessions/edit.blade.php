@@ -24,7 +24,7 @@
     <div class="form-group">
         {{ Form::label('diagnosis', 'Διάγνωση:', array('class'=>'col-md-2 control-label')) }}
         <div class="col-sm-10">
-            {{ Form::textarea('diagnosis', '', Input::old('id'), array('class'=>'form-control')) }}
+            {{ Form::textarea('diagnosis', $session->diagnosis, Input::old('diagnosis'), array('class'=>'form-control')) }}
         </div>
     </div>
 
@@ -59,15 +59,15 @@
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#perscription">
-                        Φαρμακευτική Αγωγή
+                    <a data-toggle="collapse" data-parent="#accordion" href="#prescriptions">
+                        Συνταγογράφηση φαρμάκων
                     </a>
                 </h4>
             </div>
-            <div id="perscription" class="panel-collapse collapse">
+            <div id="prescriptions" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <button class="btn btn-primary">Προσθήκη</button>
 
+                    @include('sessions.prescriptions.aio')
                 </div>
             </div>
         </div>

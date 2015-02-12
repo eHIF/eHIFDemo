@@ -56,6 +56,12 @@ Route::post('api/sessions/referrals', 'ReferralsController@api_store');
 Route::delete('api/sessions/referrals', 'ReferralsController@api_delete');
 Route::get('api/sessions/referrals/types', 'ReferralTypesController@api_index');
 
+
+
+Route::get('api/sessions/prescriptions', 'PrescriptionsController@api_index');
+Route::post('api/sessions/prescriptions', 'PrescriptionsController@api_store');
+Route::delete('api/sessions/prescriptions', 'PrescriptionsController@api_delete');
+
 Route::post('sessions/{visit_id}/close',array("as"=>"sessions.close", "uses"=>"SessionsController@close"));
 
 

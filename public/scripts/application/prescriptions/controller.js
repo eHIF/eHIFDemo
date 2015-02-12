@@ -1,10 +1,10 @@
-app.controller('ReferralsController', function($scope,ReferralsService,ReferralsTypesService,DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder) {
+app.controller('PrescriptionsController', function($scope,PrescriptionsService,DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder) {
 
-    $scope.referrals = ReferralsService.get({ session_id: session});
+    $scope.prescriptions = PrescriptionsService.get({ session_id: session});
 
 
     $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-        return $scope.referrals.$promise;
+        return $scope.prescriptions.$promise;
     }).withPaginationType('full_numbers')
         .withOption('rowCallback', function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $('td', nRow).bind('click', function() {
@@ -29,38 +29,37 @@ app.controller('ReferralsController', function($scope,ReferralsService,Referrals
 
     ];
 
-    $scope.removeReferral = function(index){
-        var id = $scope.referrals[index].id;
-        ReferralsService.remove({id:id, session_id:session}).$promise.then(
+    $scope.removePrescription = function(index){
+        var id = $scope.prescriptions[index].id;
+        PerscriptionsService.remove({id:id, session_id:session}).$promise.then(
             function(data){
-                $scope.referrals = data;
-               // $scope.dtOptions.reloadData();
+                $scope.prescriptions = data;
+                // $scope.dtOptions.reloadData();
             },
             function(){},
             function(){}
         ) ;
     };
 
-    $scope.addReferral= function(){
-        ReferralsService.add($scope.newReferral).$promise.then(
+    $scope.addPrescription= function(){
+        PrescriptionsService.add($scope.newPrescription).$promise.then(
             function(data){
-               $scope.referrals = data;
-               //    $scope.dtOptions.changeData();
+                $scope.prescriptions = data;
+                //    $scope.dtOptions.changeData();
             },
             function(){},
             function(){}
         ) ;
 
-        $scope.newReferral = $scope.createReferral();
+        $scope.newPrescription = $scope.createPrescription();
     };
 
-    $scope.createReferral = function(){
+    $scope.createPrescription = function(){
         return {patient_id:patient, doctor_id:doctor, session_id:session};
     };
 
 
-    $scope.referralTypes = ReferralsTypesService.get({session_id:session});
-    $scope.newReferral =  $scope.createReferral();
+    $scope.newPrescription =  $scope.createPrescription();
 
     $scope.baseURL = baseURL;
 

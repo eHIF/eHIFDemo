@@ -171,7 +171,7 @@ class BpmnController extends BaseController {
             $processInstance->deleteProcessInstance();
 
 
-            return View::make("processes.list");
+            return Redirect::to(URL::to("processes/list"));
         }
         catch( \GuzzleHttp\Exception\ClientException $ex ){
 

@@ -37,6 +37,7 @@ class D5Controller extends BpmnController {
 
         $session->save();
 
+
         $session->visit->visit_status_id = VisitStatus::where("name","complete")->first()->id;
 
         $session->visit->save();

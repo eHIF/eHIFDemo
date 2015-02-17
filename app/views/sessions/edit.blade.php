@@ -95,7 +95,7 @@
             </div>
             <div id="hospitalization" class="panel-collapse collapse">
                 <div class="panel-body">
-  
+
                 </div>
             </div>
         </div>

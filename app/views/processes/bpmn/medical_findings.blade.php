@@ -47,7 +47,7 @@
                         <label class="col-sm-2 control-label" for="eyrimata_sel">Ευρήματα</label>
 
                         <div class="col-sm-10" ng-keyup="alert($event)"  tabindex="1">
-                            <select chosen multiple id="eyrimata_sel" name="eyrimata_sel" class="form-control"
+                            <select required="required" chosen multiple id="eyrimata_sel" name="eyrimata_sel" class="form-control"
                                     ng-model="selectedDiseases"
                                     ng-options="item as (item.title + ' [' + item.code+ ']') for item in diseases"
                                     >

@@ -184,9 +184,13 @@ class SessionsController extends BaseController {
         }
 
 
+
+
+
+
         $sessions = $searchQuery
-            ->offset(Input::get("start", 0))
-            ->limit(Input::get("length", 10))
+            ->offset(0)
+            ->limit(100)
             ->get();
 
 

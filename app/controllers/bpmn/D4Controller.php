@@ -46,12 +46,14 @@ class D4Controller extends BpmnController {
 
             ));
 
+            $session->patient()->associate($patient);
+            $session->doctor()->associate(Auth::user());
+            $session->visit()->associate($visit);
 
 
             $session->save();
             $processInstance->setVariable("session_id", $session->id);
         }
-
 
 
         return parent::complete($task_id);

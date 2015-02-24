@@ -9,7 +9,7 @@
 
 class Visit extends Eloquent{
 
-    public $fillable = array("symptoms", "diagnosis", "when", "visit_classification_id",
+    public $fillable = array("symptoms", "diagnosis", "when", "taxinomisi_peristatikou",
         "patient_id",
         "reception_user_id",
         "visit_status_id");

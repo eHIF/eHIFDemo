@@ -36,9 +36,9 @@
 </div>
 
 <div class="form-group">
-    {{ Form::label('visit_classification_id', 'Κατηγορία περιστατικού:', array('class'=>'col-md-2 control-label')) }}
+    {{ Form::label('taxinomisi_peristatikou', 'Κατηγορία περιστατικού:', array('class'=>'col-md-2 control-label')) }}
     <div class="col-sm-10">
-        <select name="visit_classification_id" id="visit_classification_id">
+        <select name="taxinomisi_peristatikou" id="taxinomisi_peristatikou">
         @foreach(VisitClassification::all() as $classification)
         <option value="{{$classification->id}}">{{$classification->name}}</option>
         @endforeach

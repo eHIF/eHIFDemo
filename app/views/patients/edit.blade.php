@@ -45,7 +45,7 @@
     <div class="form-group">
         {{ Form::label('amka', 'ΑΜΚΑ:', array('class'=>'col-md-2 control-label')) }}
         <div class="col-sm-10">
-            {{ Form::text('amka', Input::old('amka'), array('class'=>'form-control', 'placeholder'=>'ΑΜΚΑ')) }}
+            {{ Form::text('amka', Input::old('amka'), array('class'=>'form-control', 'placeholder'=>'ΑΜΚΑ', 'pattern'=>"[0-9]{11}")) }}
         </div>
     </div>
 

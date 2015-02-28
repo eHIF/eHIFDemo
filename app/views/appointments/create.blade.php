@@ -6,6 +6,8 @@
 
 @section('content')
 
+
+
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
         @if ($errors->any())
@@ -21,45 +23,56 @@
 {{ Form::open(array('route' => 'appointments.store', 'class' => 'form-horizontal')) }}
 
         <div class="form-group">
-            {{ Form::label('when', 'When:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('patient', 'Ασθενής:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('when', Input::old('when'), array('class'=>'form-control', 'placeholder'=>'When')) }}
+                {{$patient->onomatepwnimo}}
+            </div>
+        </div>
+
+        <input type="hidden" name="patient_id" value="{{$patient->id}}"/>
+
+        <div class="form-group">
+
+
+
+
+
+
+
+
+            {{ Form::label('when', 'Ημερομηνία:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+                <div class='input-group date datetimepicker'>
+                    <input data-date-format="YYYY-MM-DD hh:mm" type='text' id="when" name="when" class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('patient_id', 'Patient_id:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('context', 'Παρατηρήσεις:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::input('number', 'patient_id', Input::old('patient_id'), array('class'=>'form-control')) }}
+              {{ Form::textarea('context', Input::old('context'), array('class'=>'form-control', 'placeholder'=>'Παρατηρήσεις')) }}
             </div>
         </div>
 
+<input type="hidden" name="scheduler_id" value="{{Auth::user()->id}}"/>
+
+
         <div class="form-group">
-            {{ Form::label('context', 'Context:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('doctor_id', 'Ιατρός:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('context', Input::old('context'), array('class'=>'form-control', 'placeholder'=>'Context')) }}
+              {{ Form::select('doctor_id', $doctors, array('class'=>'form-control', 'placeholder'=>'Ιατρός')) }}
             </div>
         </div>
 
-        <div class="form-group">
-            {{ Form::label('doctor_id', 'Doctor_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::input('number', 'doctor_id', Input::old('doctor_id'), array('class'=>'form-control')) }}
-            </div>
-        </div>
-
-        <div class="form-group">
-            {{ Form::label('scheduler_id', 'Scheduler_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::text('scheduler_id', Input::old('scheduler_id'), array('class'=>'form-control', 'placeholder'=>'Scheduler_id')) }}
-            </div>
-        </div>
 
 
 <div class="form-group">
     <label class="col-sm-2 control-label">&nbsp;</label>
     <div class="col-sm-10">
-      {{ Form::submit('Create', array('class' => 'btn btn-lg btn-primary')) }}
+      {{ Form::submit('Αποθήκευση', array('class' => 'btn btn-lg btn-primary')) }}
     </div>
 </div>
 
@@ -68,3 +81,15 @@
 @stop
 
 
+@section("scripts")
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.datetimepicker').datetimepicker({
+                language:'el',
+                pickTime: true
+            });
+        });
+
+
+    </script>
+@stop

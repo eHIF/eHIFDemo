@@ -81,7 +81,7 @@
             </div>
             <div id="therapy" class="panel-collapse collapse">
                 <div class="panel-body">
-
+                    @include('sessions.therapeutics.aio')
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
             </div>
             <div id="hospitalization" class="panel-collapse collapse">
                 <div class="panel-body">
-
+                    @include('sessions.hospitalizations.aio')
                 </div>
             </div>
         </div>

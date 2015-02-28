@@ -12,7 +12,33 @@
     <!-- CUSTOM STYLES-->
     <link href="{{URL::asset('bs-binary-admin/assets/css/custom.css')}}" rel="stylesheet"/>
     <link href="{{URL::asset('bower_resources/DataTables/media/css/jquery.dataTables.css')}}" rel="stylesheet"/>
+
+
+    <link href="{{URL::asset('bower_resources/datatables-responsive/css/dataTables.responsive.css')}}" rel="stylesheet"/>
+
     <link href="{{URL::asset('bower_resources/angular-datatables/dist/datatables.bootstrap.css')}}" rel="stylesheet"/>
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-57x57.png')}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-60x60.png')}}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-72x72.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-76x76.png')}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-114x114.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-120x120.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-152x152.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{URL::asset('bs-binary-admin/assets/img/favicon/apple-icon-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{URL::asset('bs-binary-admin/assets/img/favicon/android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{URL::asset('bs-binary-admin/assets/img/favicon/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{URL::asset('bs-binary-admin/assets/img/favicon/favicon-96x96.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{URL::asset('bs-binary-admin/assets/img/favicon/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{URL::asset('bs-binary-admin/assets/img/favicon/manifest.json')}}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{URL::asset('bs-binary-admin/assets/img/favicon/ms-icon-144x144.png')}}">
+    <meta name="theme-color" content="#ffffff">
+
+
+
 
 
     <link rel="stylesheet"
@@ -33,6 +59,7 @@
             </button>
 
             <a class="navbar-brand" href="{{URL::to('/')}}">Κ.Υ. Κισσάμου</a>
+            <small style="text-align: center; margin: 0 auto;"><a style="text-align: center; color:rgb(245, 237, 215)" href="http://www.hc-crete.gr/ky-kissamos" class="col-sm-12">www.hc-crete.gr/ky-kissamos</a> </small>
         </div>
         @if(Auth::check())
             <div style="color: white;
@@ -91,7 +118,7 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
                         </ul>
                     </li>
                     <li>
-                        <a href="blank.html"><i class="fa fa-bar-chart-o fa-3x"></i> Αναφορές </a>
+                        <a href="{{URL::to("/")}}"><i class="fa fa-bar-chart-o fa-3x"></i> Αναφορές </a>
                     </li>
                     <li>
                         <a class="{{ Request::is( 'ehif*') ? 'active-menu' : '' }}"
@@ -132,8 +159,10 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
                     <div class="">
                         <div style=" background:rgba(52, 70, 79, 0.88)">
                             <div class="col-sm-2"><img  style="margin-top: 50px; display: block; margin: 0 auto;  max-width: 80px" src="{{URL::asset('bs-binary-admin/assets/img/ehif.png')}}" alt=""/></div>
-                            <div class="text-muted col-sm-10">   <div>Πιλοτική εφαρμογή του προγράμματος <a target="_blank" href="http://medlab.cc.uoi.gr/ehif">eHIF</a> (e-Health Interoperability Framework) - Δικτύωση Μονάδων Πρωτοβάθμιας Φροντίδας. Με τη συγχρηματοδότηση... </div></div>
-
+                            <div class="text-muted col-sm-8">   <div>Πιλοτική εφαρμογή του προγράμματος <a target="_blank" href="http://medlab.cc.uoi.gr/ehif">eHIF</a> (e-Health Interoperability Framework) - Δικτύωση Μονάδων Πρωτοβάθμιας Φροντίδας. Με τη συγχρηματοδότηση του Υπουργείου Υγείας και του ΕΣΠΑ </div></div>
+                        <div class="col-sm-2">
+                            <img style="max-width: 100px" src="{{URL::asset('bs-binary-admin/assets/img/espa-logo-medium-small.jpg')}}" alt=""/>
+                        </div>
 
                         </div>
 
@@ -176,9 +205,19 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
 <script src="{{ URL::asset('bower_resources/angular-resource/angular-resource.js')}}"></script>
 <script src="{{ URL::asset('bower_resources/angular-route/angular-route.js')}}"></script>
 <script src="{{ URL::asset('bower_resources/angular-datatables/dist/angular-datatables.js')}}"></script>
+<script src="{{ URL::asset('bower_resources/datatables-responsive/js/dataTables.responsive.js')}}"></script>
+
 <script src="{{URL::asset('bower_resources/angular-chosen-localytics/chosen.js')}}"></script>
 <script src="{{URL::asset('bower_resources/angular-bootstrap-datetimepicker/src/js/datetimepicker.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        $('body').tooltip({
+            selector: '[data-toggle="tooltip"]',
+            container: "body"
+        });
+    });
 
+</script>
 
 <script src="{{ URL::asset('scripts/application/app.js')}}"></script>
 @yield('scripts')

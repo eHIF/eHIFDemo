@@ -33,7 +33,8 @@
     "angular-datatables": "~0.2.0",
     "eonasdan-bootstrap-datetimepicker": "~3.1.3",
     "angular-chosen-localytics": "~1.0.6",
-    "angular-bootstrap-datetimepicker": "~0.3.8"
+    "angular-bootstrap-datetimepicker": "~0.3.8",
+    "datatables-responsive": "~1.0.4"
   },
   "resolutions": {
     "angular": "1.2.28"

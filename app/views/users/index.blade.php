@@ -10,7 +10,7 @@
 
 
 
-@if ($users->count())
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -31,8 +31,5 @@
 			@endforeach
 		</tbody>
 	</table>
-@else
-	Δε βρέθηκε προσωπικό
-@endif
 
 @stop

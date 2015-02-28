@@ -126,4 +126,15 @@
 
 @stop
 
+@section("scripts")
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.datetimepicker').datetimepicker({
+                language:'el',
+                pickTime: false
+            });
+        });
 
+
+    </script>
+@stop

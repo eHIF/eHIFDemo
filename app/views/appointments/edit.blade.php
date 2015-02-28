@@ -18,50 +18,67 @@
 
 {{ Form::model($appointment, array('class' => 'form-horizontal', 'method' => 'PATCH', 'route' => array('appointments.update', $appointment->id))) }}
 
-        <div class="form-group">
-            {{ Form::label('when', 'When:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::text('when', Input::old('when'), array('class'=>'form-control', 'placeholder'=>'When')) }}
-            </div>
-        </div>
 
-        <div class="form-group">
-            {{ Form::label('patient_id', 'Patient_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::input('number', 'patient_id', Input::old('patient_id'), array('class'=>'form-control')) }}
-            </div>
-        </div>
+<div class="form-group">
+    {{ Form::label('patient', 'Ασθενής:', array('class'=>'col-md-2 control-label')) }}
+    <div class="col-sm-10">
+        {{$appointment->patient->onomatepwnimo}}
+    </div>
+</div>
 
-        <div class="form-group">
-            {{ Form::label('context', 'Context:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::text('context', Input::old('context'), array('class'=>'form-control', 'placeholder'=>'Context')) }}
-            </div>
-        </div>
+<input type="hidden" name="patient_id" value="{{$appointment->patient->id}}"/>
 
-        <div class="form-group">
-            {{ Form::label('doctor_id', 'Doctor_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::input('number', 'doctor_id', Input::old('doctor_id'), array('class'=>'form-control')) }}
-            </div>
-        </div>
+<div class="form-group">
 
-        <div class="form-group">
-            {{ Form::label('scheduler_id', 'Scheduler_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::text('scheduler_id', Input::old('scheduler_id'), array('class'=>'form-control', 'placeholder'=>'Scheduler_id')) }}
-            </div>
+    {{ Form::label('when', 'Ημερομηνία:', array('class'=>'col-md-2 control-label')) }}
+    <div class="col-sm-10">
+        <div class='input-group date datetimepicker'>
+            <input data-date-format="YYYY-MM-DD hh:mm" type='text' id="when" name="when" class="form-control" value="{{$appointment->when}}" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
         </div>
+    </div>
+</div>
+
+<div class="form-group">
+    {{ Form::label('context', 'Παρατηρήσεις:', array('class'=>'col-md-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::textarea('context', Input::old('context'), array('class'=>'form-control', 'placeholder'=>'Παρατηρήσεις')) }}
+    </div>
+</div>
+
+<input type="hidden" name="scheduler_id" value="{{Auth::user()->id}}"/>
+
+
+<div class="form-group">
+    {{ Form::label('doctor_id', 'Ιατρός:', array('class'=>'col-md-2 control-label')) }}
+    <div class="col-sm-10">
+        {{ Form::select('doctor_id', $doctors,  $appointment->doctor_id, array('class'=>'form-control', 'placeholder'=>'Ιατρός')) }}
+    </div>
+</div>
+
 
 
 <div class="form-group">
     <label class="col-sm-2 control-label">&nbsp;</label>
     <div class="col-sm-10">
-      {{ Form::submit('Update', array('class' => 'btn btn-lg btn-primary')) }}
-      {{ link_to_route('appointments.show', 'Cancel', $appointment->id, array('class' => 'btn btn-lg btn-default')) }}
+        {{ Form::submit('Ενημέρωση', array('class' => 'btn btn-lg btn-primary')) }}
     </div>
 </div>
 
 {{ Form::close() }}
 
+@stop
+
+@section("scripts")
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.datetimepicker').datetimepicker({
+            language:'el',
+            pickTime: true
+        });
+    });
+
+
+</script>
 @stop

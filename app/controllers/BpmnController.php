@@ -79,9 +79,9 @@ class BpmnController extends BaseController {
             }
         }
         catch(\GuzzleHttp\Exception\ClientException $ex){
-            return Redirect::to(URL::to("processes/list"));
+            return View::make("processes.end");
         }
-        return Redirect::to(URL::to("processes/list"));
+        return View::make("processes.end");
     }
 
     public function complete($task_id){
@@ -111,7 +111,7 @@ class BpmnController extends BaseController {
 
                     if(empty($superprocesses)){
 
-                        return Redirect::to(URL::to("processes/list"));
+                        return View::make("processes.end");
                     }
                     else{
 
@@ -147,7 +147,7 @@ class BpmnController extends BaseController {
 
         catch(GuzzleHttp\Exception\ClientException $ex){
             if($ex->getCode()==404){
-                //throw $ex;
+
                 return View::make("processes.end"); //Redirect::to(URL::to("processes/list"));
             }
         }
@@ -157,7 +157,7 @@ class BpmnController extends BaseController {
             die;
         }
 
-        return Redirect::to(URL::to("processes/list"));
+        return View::make("processes.end");
 
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class AppointmentsController extends BaseController {
 
 	/**
@@ -21,9 +23,11 @@ class AppointmentsController extends BaseController {
 	 */
 	public function index()
 	{
-		$appointments = $this->appointment->all();
 
-		return View::make('appointments.index', compact('appointments'));
+		$todaysAppointments= Appointment::whereBetween('when', array(Carbon::today(), Carbon::today()->addDay()))->with("patient")->get();
+
+
+		return View::make('appointments.index')->with("todaysAppointments", $todaysAppointments);
 	}
 
 	/**
@@ -31,9 +35,21 @@ class AppointmentsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($patient_id)
 	{
-		return View::make('appointments.create');
+		$patient = Patient::find($patient_id);
+		$role = "doctor";
+
+		$doctors = User::with("roles")->whereHas("roles",  function($q) use($role)
+		{
+			$q->where('name', '=', $role);
+
+		})->get()->lists("name","id");
+
+
+
+
+		return View::make('appointments.create')->with("patient", $patient)->with("doctors", $doctors);
 	}
 
 	/**
@@ -87,7 +103,16 @@ class AppointmentsController extends BaseController {
 			return Redirect::route('appointments.index');
 		}
 
-		return View::make('appointments.edit', compact('appointment'));
+		$role = "doctor";
+
+		$doctors = User::with("roles")->whereHas("roles",  function($q) use($role)
+		{
+			$q->where('name', '=', $role);
+
+		})->get()->lists("name","id");
+
+
+		return View::make('appointments.edit', compact('appointment'))->with("doctors", $doctors);
 	}
 
 	/**
@@ -106,7 +131,7 @@ class AppointmentsController extends BaseController {
 			$appointment = $this->appointment->find($id);
 			$appointment->update($input);
 
-			return Redirect::route('appointments.show', $id);
+			return Redirect::route('appointments.index');
 		}
 
 		return Redirect::route('appointments.edit', $id)
@@ -126,6 +151,75 @@ class AppointmentsController extends BaseController {
 		$this->appointment->find($id)->delete();
 
 		return Redirect::route('appointments.index');
+	}
+
+
+	public function api_index()
+	{
+
+		// dd(Input::all());
+		$query = Appointment
+			::with("patient")
+			->with("doctor")
+			->with("scheduler")
+			->join("patients", "appointments.patient_id","=","patients.id")
+			->join("users", "appointments.doctor_id","=","users.id")
+			->select(["appointments.*","appointments.id as id"])
+		;
+
+		$count = $query->count();
+
+
+		$search = Input::get("search")["value"];
+
+		$searchQuery =$query->where("patients.amka", "LIKE", "%$search%")
+			->orWhere("patients.onomatepwnimo", "LIKE", "%$search%");
+
+
+
+		$s_count = $searchQuery->count();
+
+		$columns = Input::get("columns");
+		foreach (Input::get("order",[]) as $order) {
+			$column  = $columns[$order["column"]]["data"];
+
+			$col_parts = explode(".",$column);
+
+			if(count($col_parts)>1){
+				for($i=0;$i<count($col_parts)-1;$i++){
+					$tableName = str_plural($col_parts[$i]);
+					$col_parts[$i] = $tableName;
+				}
+
+
+			}
+
+			$column = implode(".", array_slice($col_parts,-2,2));
+
+
+
+
+			$searchQuery->orderBy($column, $order["dir"]);
+
+
+		}
+		$sessions = $searchQuery
+			->offset(0)
+			->limit(100)
+			->get();
+
+
+		//  dd(Input::all());
+		//dd(DB::getQueryLog());
+		return [
+			"data" => $sessions,
+			"recordsTotal" => $count,
+			"recordsFiltered" => $s_count,
+			"draw" => Input::get("draw"),
+
+
+		];
+
 	}
 
 }

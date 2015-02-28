@@ -33,9 +33,8 @@ class VisitsController extends Controller
 
     public function index()
     {
-        $visits = Visit::with("patient")->where("visit_status_id", 1)->get();
 
-        return View::make("visits.index")->with("visits", $visits);
+        return View::make("visits.index");
     }
 
     public function api_index()

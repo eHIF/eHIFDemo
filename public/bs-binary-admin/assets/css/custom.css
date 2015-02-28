@@ -409,3 +409,16 @@ line-height: 1.428571429;
     border-bottom: dotted 1px;
     cursor:help
 }
+
+.dataTables_filter input{
+    border:1px solid gray;
+}
+
+.h-label{
+    display: none;
+    margin-left: 2px ;
+}
+
+.btn:hover .h-label{
+    display: inline;
+}

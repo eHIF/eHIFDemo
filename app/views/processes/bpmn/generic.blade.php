@@ -14,7 +14,7 @@
     {{$task->name}}
     <div class="pull-right">
         <form action="{{URL::to('processes/delete/'.$task->processInstance->id)}}" method="post">
-            <button href="http://localhost/eHIFDemo/public/patients/create" class="btn  btn-danger">Ακύρωση</button>
+            <button class="btn  btn-danger">Ακύρωση</button>
         </form>
         
     </div>

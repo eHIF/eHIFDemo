@@ -1,6 +1,12 @@
 @extends("layouts.default")
 
 @section("pagetitle")
+    <div class="pull-right">
+        <form action="{{URL::to('processes/delete/'.$task->processInstance->id)}}" method="post">
+            <button class="btn  btn-danger">Ακύρωση</button>
+        </form>
+
+    </div>
     {{$task->name}}
 @stop
 @section('breadcrumb')

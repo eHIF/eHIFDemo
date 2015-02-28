@@ -57,15 +57,27 @@ Route::delete('api/sessions/referrals', 'ReferralsController@api_delete');
 Route::get('api/sessions/referrals/types', 'ReferralTypesController@api_index');
 
 
+Route::get('api/sessions/therapeutics', 'TherapeuticsController@api_index');
+Route::post('api/sessions/therapeutics', 'TherapeuticsController@api_store');
+Route::delete('api/sessions/therapeutics', 'TherapeuticsController@api_delete');
+Route::get('api/sessions/therapeutics/types', 'TherapeuticsTypesController@api_index');
+
+
 
 Route::get('api/sessions/prescriptions', 'PrescriptionsController@api_index');
 Route::post('api/sessions/prescriptions', 'PrescriptionsController@api_store');
 Route::delete('api/sessions/prescriptions', 'PrescriptionsController@api_delete');
 
+Route::get('api/sessions/hospitalizations', 'HospitalizationsController@api_index');
+Route::post('api/sessions/hospitalizations', 'HospitalizationsController@api_store');
+Route::delete('api/sessions/hospitalizations', 'HospitalizationsController@api_delete');
+
 Route::post('sessions/{visit_id}/close',array("as"=>"sessions.close", "uses"=>"SessionsController@close"));
 
 
 Route::resource('appointments', 'AppointmentsController');
+Route::get("appointments/create/{patient_id}", "AppointmentsController@create");
+Route::get("api/appointments/index", "AppointmentsController@api_index");
 
 
 Route::get('processes/list',"ProcessesController@enlist");

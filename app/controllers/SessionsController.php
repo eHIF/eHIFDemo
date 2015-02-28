@@ -21,9 +21,8 @@ class SessionsController extends BaseController {
 	 */
 	public function index()
 	{
-		$sessions = $this->session->all();
 
-		return View::make('sessions.index', compact('sessions'));
+		return View::make('sessions.index');
 	}
 
 	/**
@@ -120,8 +119,8 @@ class SessionsController extends BaseController {
 		{
 			$session = $this->session->find($id);
 			$session->update($input);
-            dd($session);
-			return Redirect::route('sessions.show', $id);
+
+			return Redirect::route('sessions.index', $id);
 		}
 
 		return Redirect::route('sessions.edit', $id)

@@ -26,6 +26,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": "{{URL::to('api/patients/index')}}",
+                "responsive":true,
                 "columns": [
                     {data: "id"},
                     {
@@ -43,11 +44,16 @@
                             $(div).addClass("btn-group");
                              {
                                 var form = document.createElement("form");
+                                $(form).addClass("btn-group");
                                 var closeButton = document.createElement("button");
                                 $(form).attr("method", "get").attr("action", baseURL + "/visits/create/" + full.id );
 
-                                $(closeButton).attr("type", "submit").addClass("btn btn-danger");
-                                $(closeButton).text("Έναρξη επίσκεψης");
+                                $(closeButton).attr("type", "submit").addClass("btn btn-info");
+                                $(closeButton).attr("title","Έναρξη επίσκεψης");
+
+                                 $(closeButton).html("<i class='fa fa-h-square'></i>");
+                                 $(closeButton).attr("data-toggle","tooltip");
+
                                 $(form).append(closeButton);
 
                                 $(div).append(form);
@@ -56,12 +62,32 @@
                            {
 
                                 form = document.createElement("form");
+                               $(form).addClass("btn-group");
                                 var doctorButton = document.createElement("button");
                                 $(form).attr("method", "get").attr("action", baseURL + "/patients/" + full.id );
 
                                 $(doctorButton).attr("type", "submit").addClass("btn btn-warning");
-                                $(doctorButton).text("Προβολή");
+                                $(doctorButton).attr("title","Προβολή");
+                               $(doctorButton).html("<i class='fa fa-eye'></i>");
+                               $(doctorButton).attr("data-toggle","tooltip");
                                 $(form).append(doctorButton);
+
+                                $(div).append(form);
+
+                            }
+
+                            {
+
+                                form = document.createElement("form");
+                                $(form).addClass("btn-group");
+                                var appointmentButton = document.createElement("button");
+                                $(form).attr("method", "get").attr("action", baseURL + "/appointments/create/" + full.id );
+
+                                $(appointmentButton).attr("type", "submit").addClass("btn btn-success");
+                                $(appointmentButton).attr("title","Ραντεβού");
+                                $(appointmentButton).html("<i class='fa fa-calendar-o'></i>");
+                                $(appointmentButton).attr("data-toggle","tooltip");
+                                $(form).append(appointmentButton);
 
                                 $(div).append(form);
 
@@ -83,8 +109,8 @@
 
 @section('content')
 
-    @if ($patients->count())
-        <table class="table table-striped" id="patients">
+
+        <table width="100%" class="table table-striped" id="patients">
             <thead>
             <tr>
                 <th>A/A</th>
@@ -97,8 +123,6 @@
 
 <tbody></tbody>
         </table>
-    @else
-        There are no patients
-    @endif
+
 
 @stop

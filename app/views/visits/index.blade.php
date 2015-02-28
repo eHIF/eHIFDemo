@@ -12,6 +12,8 @@
                 "serverSide": true,
                 "ajax": "{{URL::to('api/visits/index')}}",
                 "order": [[ 3, "desc" ],[ 4, "desc" ]],
+                width:"100%",
+                responsive:true,
                 "columns": [
                     {data: "id"},
                     {data: "patient.onomatepwnimo"},
@@ -25,11 +27,17 @@
 
                         if(full.visit_status.name == "pending" || full.visit_status.name == "session") {
                             var form = document.createElement("form");
+                            $(form).toggleClass("btn-group");
                             var closeButton = document.createElement("button");
                             $(form).attr("method", "post").attr("action", baseURL + "/visits/" + full.id + "/close");
 
                             $(closeButton).attr("type", "submit").addClass("btn btn-danger");
-                            $(closeButton).text("Κλείσιμο");
+                            $(closeButton).attr("data-toggle","tooltip");
+                            $(closeButton).attr("title", "Κλείσιμο");
+
+
+                            $(closeButton).html("<i class='fa fa-times'></i>");
+
                             $(form).append(closeButton);
 
                             $(div).append(form);
@@ -38,11 +46,16 @@
                         if(full.visit_status.name == "pending" ){
 
                             form = document.createElement("form");
+                            $(form).toggleClass("btn-group");
                             var doctorButton = document.createElement("button");
                             $(form).attr("method", "post").attr("action", baseURL+"/visits/"+full.id+"/session");
 
                             $(doctorButton).attr("type","submit").addClass("btn btn-warning");
                             $(doctorButton).text("Στο ιατρείο");
+                            $(doctorButton).attr("title","Στο ιατρειο");
+                            $(doctorButton).attr("data-toggle","tooltip");
+
+                            $(doctorButton).html("<i class='fa fa-stethoscope'></i>");
                             $(form).append(doctorButton);
 
                             $(div).append(form);
@@ -69,7 +82,7 @@
 
 
 
-    <table class="table table-striped table-bordered" id="visits">
+    <table width="100%" class="table table-striped" id="visits">
         <thead>
         <tr>
             <th>Α/Α</th>

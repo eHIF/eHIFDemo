@@ -21,9 +21,8 @@ class PatientsController extends BaseController {
 	 */
 	public function index()
 	{
-		$patients = $this->patient->all();
 
-		return View::make('patients.index', compact('patients'));
+		return View::make('patients.index');
 	}
 
 	/**

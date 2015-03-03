@@ -126,8 +126,7 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider',
         'Greggilbert\Redoubt\RedoubtServiceProvider',
         'Regulus\ActivityLog\ActivityLogServiceProvider',
-        'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider',
-        'Dollar\Generators\GeneratorsServiceProvider',
+		'Dollar\Generators\GeneratorsServiceProvider',
         'eHIF\Events\ApiEventsProvider',
 
 	),
@@ -135,7 +134,8 @@ return array(
 	/*
 	|--------------------------------------------------------------------------
 	| Service Provider Manifest
-	|--------------------------------------------------------------------------
+	|
+	--------------------------------------------------------------------------
 	|
 	| The service provider manifest is used by Laravel to lazy load service
 	| providers which are not needed for each request, as well to keep a

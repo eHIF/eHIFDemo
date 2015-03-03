@@ -11,7 +11,7 @@
         "greggilbert/redoubt": "dev-master",
         "guzzlehttp/guzzle": "~4.0",
         "regulus/activity-log": "0.3.0",
-        "codesleeve/laravel-stapler": "dev-master",
+
         "dollar/generators": "dev-master",
         "ehif/ehif-wrapper-php": "dev-master"
 	},

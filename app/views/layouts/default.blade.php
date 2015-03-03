@@ -59,7 +59,7 @@
             </button>
 
             <a class="navbar-brand" href="{{URL::to('/')}}">Κ.Υ. Κισσάμου</a>
-            <small style="text-align: center; margin: 0 auto;"><a style="text-align: center; color:rgb(245, 237, 215)" href="http://www.hc-crete.gr/ky-kissamos" class="col-sm-12">www.hc-crete.gr/ky-kissamos</a> </small>
+            <small style="text-align: center; margin: 0 auto;"><a style="background: #34464F; text-align: center; color:rgb(245, 237, 215)" href="http://www.hc-crete.gr/ky-kissamos" class="col-sm-12">www.hc-crete.gr/ky-kissamos</a> </small>
         </div>
         @if(Auth::check())
             <div style="color: white;
@@ -214,6 +214,7 @@ font-size: 16px;"><i>{{Auth::user()->roles()->first()->friendly}}</i> {{Auth::us
         $('body').tooltip({
             selector: '[data-toggle="tooltip"]',
             container: "body"
+            
         });
     });
 

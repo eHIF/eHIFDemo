@@ -42,10 +42,14 @@ class Visit extends Eloquent{
 
         $medicalSession = MedicalSession::create([]);
 
+        $medicalSession->doctor()->associate(Auth::user());
+        $medicalSession->patient()->associate($this->patient);
+
         $medicalSession->visit()->associate($this);
         $this->visit_status()->associate(VisitStatus::where("name","session" )->first());
 
         $medicalSession->save();
+        //dd($medicalSession);
         $this->save();
 
 

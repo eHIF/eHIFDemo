@@ -11,7 +11,7 @@ app.controller('PatientsSearchController', function($scope,PatientsSearch,Patien
         .withOption('rowCallback', function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $('td', nRow).bind('click', function() {
                 $scope.$apply(function() {
-               //     $scope.masterDetailHandler(aData);
+                    $scope.masterDetailHandler(aData);
                 });
             });
             return nRow;

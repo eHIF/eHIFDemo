@@ -439,3 +439,7 @@ li.next-task {
 .page-title h2{
     display: inline-block;
 }
+
+#page-inner hr{
+    border-top: 1px solid #C8BC9D;
+}

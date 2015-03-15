@@ -33,6 +33,10 @@ return  array(
         "D1_4" => array(
             "usertask8"=>array("action"=>"D4Controller@decide"),
         ),
+        "D1_6" => array(
+            "usertask3"=>array("action"=>"D6Controller@eopyyExams"),
+            "usertask5"=>array("action"=>"D6Controller@internalExams"),
+        ),
         "D1_9" => array(
             "usertask1"=>array("action"=>"D9Controller@patientHospitalize"),
         ),
@@ -51,8 +55,14 @@ return  array(
         "D1_3" => "D1_3:1:7513",
         "D1_4" => "D1_4:1:7517",
         "D1_5" => "D1_5:1:7525",
+        "D1_6" => "D1_6:1:7705",
         "D1_9" => "D1_9:1:7541",
         "D1_10" => "D1_10:1:7545",
+    ),
+
+
+    "long"=>array(
+        ""
     ),
 
 );

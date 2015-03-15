@@ -28,7 +28,7 @@
 			<div class="panel-body">
 				<ul class="list-group">
 
-					@foreach($patient->sessions as $session)
+					@foreach($patient->sessions()->orderBy("created_at", "desc")->get() as $session)
 						<li class="list-group-item">
 							<span><i class="fa fa-stethoscope"></i> <a href="{{URL::to("sessions/".$session->id."/edit")}}">{{$session->created_at}}</a> </span> <strong>(Συνεδρία με: {{$session->doctor->name}})</strong>
 							<ul>
@@ -58,7 +58,7 @@
 			->diff(new DateTime('now',  new DateTimeZone('Europe/Athens')))
 			->y;}} ετών)</h5>
 		<h5>ΑΜΚΑ: {{{$patient->amka}}}</h5>
-		<h5>Διεύθυνση: {{{$patient->town}}}</h5>
+		<h5>Διεύθυνση: {{{$patient->town}}}  {{{$patient->address}}}</h5>
 		<h5>Τηλέφωνο: {{{$patient->phone}}}</h5>
 	</div>
 </div>

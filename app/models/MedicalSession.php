@@ -31,4 +31,6 @@ class MedicalSession extends Eloquent {
     public function diseases(){
         return $this->belongsToMany("Disease")->withTimestamps();
     }
+
+
 }

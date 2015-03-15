@@ -21,6 +21,10 @@
 <div class="col-sm-6">
     {{ Form::model($session, array('class' => 'form-horizontal', 'method' => 'PATCH', 'route' => array('sessions.update', $session->id))) }}
 
+
+
+
+
     <div class="form-group">
         {{ Form::label('diagnosis', 'Διάγνωση:', array('class'=>'col-md-2 control-label')) }}
         <div class="col-sm-10">
@@ -40,6 +44,24 @@
     {{ Form::close() }}
 </div>
 <div class="col-sm-6">
+    <div class="panel panel-info ">
+        <div class="panel-heading">
+            Ευρήματα
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+
+
+                @foreach($session->diseases as $disease)
+                    <li class="list-group-item">{{$disease->code}}. {{$disease->title}}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    </div>
+
+
+
     <div class="panel-group" id="accordion">
         <div class="panel panel-info">
             <div class="panel-heading">

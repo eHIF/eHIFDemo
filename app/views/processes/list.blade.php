@@ -19,7 +19,7 @@
                 <ul class="list-group">
 
                     @foreach($processes as $process)
-                        <li class="list-group-item"><a target="_blank"
+                        <li class="list-group-item"><a
                                     href='{{URL::action("bpmn.start", array("id"=>$process->id))}}'>{{$process->name}}</a>
                             <span class="text-success"><i class="fa fa-caret-square-o-right"></i></span></li>
                     @endforeach
@@ -48,7 +48,7 @@
                             <span style="cursor: pointer" class=" label label-primary" data-toggle="tooltip"   data-placement="top" title="@if(Patient::where("amka",$task->processInstance->getVariable("amka"))->first()){{ Patient::where("amka",$task->processInstance->getVariable("amka"))->first()->onomatepwnimo  }}@endif" ><i
                                         class="fa fa-user"></i> {{$task->processInstance->getVariable("amka")}}</span></a>
                             <span class="process-name" title="{{$task->process->description}}">{{$task->process->name}}</span>
-                            :<a target="_blank" @if(($task->assignee!=NULL)) class=""
+                            :<a @if(($task->assignee!=NULL)) class=""
                                                             @endif href='{{URL::action("bpmn.next", array("id"=>$task->id))}}'>   {{$task->name}}   <span class="text-warning"><i
                                             class="fa fa-chevron-circle-right"></i></span></a></li>
                     @endforeach

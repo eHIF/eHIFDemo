@@ -55,6 +55,7 @@ class BpmnController extends BaseController {
     public function task($process_id, $task_key, $task_id){
 
         try{
+
             $activiti = \eHIF\ActivitiEndpoint::instance();
             $task = $activiti->tasks->get($task_id);
 
@@ -122,6 +123,10 @@ class BpmnController extends BaseController {
 
                         $tasks = $superprocesses[0]->getTasks();
                         $task = $tasks[0];
+                        if(count($tasks)<1){
+                            return View::make("processes.end");
+
+                        }
                         return Redirect::to(URL::action("bpmn.next", array("id" => $task->id)));
                     }
                 }
@@ -135,6 +140,11 @@ class BpmnController extends BaseController {
                     }
 
                     $tasks = $subprocesses[0]->getTasks();
+                    if(count($tasks)<1){
+                        return View::make("processes.end");
+
+                    }
+
                     $task = $tasks[0];
                     return Redirect::to(URL::action("bpmn.next", array("id" => $task->id)));
                 }
@@ -154,7 +164,8 @@ class BpmnController extends BaseController {
         catch(\GuzzleHttp\Exception\ServerException $ex){
             echo($ex->getRequest()->getBody());
             echo($ex->getResponse()->getBody());
-            die;
+            return View::make("processes.end");
+
         }
 
         return View::make("processes.end");

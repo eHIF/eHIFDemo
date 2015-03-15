@@ -116,6 +116,8 @@ class D3Controller  extends BpmnController{
         $variables= $processInstance->getVariables();
 
 
+
+
         if(Input::has("amka")){
 
             $patient = Patient::where("amka", Input::get("amka"))->get()->first();
@@ -127,7 +129,15 @@ class D3Controller  extends BpmnController{
 
             $visit_id = $variables["visit_id"];
 
+
             $visit  = Visit::find($visit_id);
+
+            if(!$visit==null && isset($variables["session_id"])){
+
+                return parent::complete($task_id);
+
+
+            }
 
             if(!$visit==null){
                 $session = MedicalSession::create(array(

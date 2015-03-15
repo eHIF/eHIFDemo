@@ -8,10 +8,12 @@ class Patient extends Eloquent {
 	public static $rules = array();
 
     public function scopeLike($query, $what){
+        
         return $query
             ->where('onomatepwnimo', 'LIKE', "%$what%")
             ->orwhere('AMKA', 'LIKE', "%$what%")
             ;
+
     }
 
     public function visits(){

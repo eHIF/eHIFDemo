@@ -1,24 +1,8 @@
 @extends("layouts.default")
 
-@section('breadcrumb')
-    <ol class="breadcrumb">
-        <li><a href="{{URL::to('/')}}">Κέντρο Υγείας</a></li>
-        <li class="active">Διαδικασίες</li>
-        <li class="active">{{$task->process->name}}</li>
-        @foreach($task->history as $history)
-            <li>{{$history->name}}</li>
-        @endforeach
-    </ol>
-@stop
-@section("pagetitle")
-    {{$task->name}}
-    <div class="pull-right">
-        <form action="{{URL::to('processes/delete/'.$task->processInstance->id)}}" method="post">
-            <button class="btn  btn-danger">Ακύρωση</button>
-        </form>
-        
-    </div>
-@stop
+@include('processes.bpmn.breadcrumb')
+
+@include('processes.bpmn.title')
 
 @section("scripts")
     <script src="{{URL::asset('bower_resources/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>

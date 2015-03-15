@@ -415,10 +415,27 @@ line-height: 1.428571429;
 }
 
 .h-label{
-    display: none;
-    margin-left: 2px ;
-}
+     display: none;
+     margin-left: 2px ;
+ }
 
 .btn:hover .h-label{
     display: inline;
+}
+.breadcrumb > li {
+
+    color: rgb(68, 57, 85);
+
+}
+
+.breadcrumb > li + li.next-task:before {
+    content: ">>";
+    color: rgb(245, 237, 215);
+}
+li.next-task {
+    color: rgb(245, 237, 215);
+}
+
+.page-title h2{
+    display: inline-block;
 }
